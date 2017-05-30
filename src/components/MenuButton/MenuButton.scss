@@ -1,0 +1,105 @@
+.MenuButton {
+
+	display: flex;
+	align-items: flex-start;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 0.5rem 0 0.5rem 1rem;
+	top: 5vw;
+	right: -16vw;
+	height: 6vh;
+	width:15vw;
+	color: white;
+	visibility: hidden;
+	font-family: 'Poiret One', sans-serif;
+	transition: all 0.2s ease-in-out;
+	z-index: 1;
+
+	.text{
+		transition: all 0.2s ease-in-out;
+		width: 100%;
+		height: 100%;
+		font-size: 2rem;
+		.MenuFront{
+			transition: all 0.2s ease-in-out;
+			transform: skewX(-2deg);
+			opacity: 1;
+			fill: white;
+		}
+	}
+
+	&:hover, &:focus{
+		cursor: pointer;
+		color: $main-medium;
+
+		.text{
+			.MenuFront{
+				transform-origin: right;
+				transform: scaleX(1);
+				opacity: 1;
+				fill: $main-medium;
+			}
+		}
+
+		.HamburgerMenu{
+			svg{
+				transform: scale(6.5, 3);
+				&.middle-bar{
+					transform: scale(6.5, 3);
+				}
+				path{
+					&.st0{
+						fill: $main-medium;
+					}
+				}
+				.front{
+					transform: scale(1, 1);
+				}
+			}
+		}
+	}
+
+	.HamburgerMenu{
+		position: relative;
+		width: 40%;
+		margin-left: 0rem;
+		fill: black;
+
+		svg{
+			position: relative;
+			transform: scale(7, 3);
+			float: left;
+			height: 0.2rem;
+			width: 70%;
+			margin: 0.1rem;
+			transition: all 0.2s ease-in-out;
+
+			&.middle-bar{
+				transform: scale(6, 3);
+			}
+			path{
+				transition: all 0.2s ease-in-out;
+				&.st1{
+					fill: $main-medium;
+				}
+			}
+			.front{
+				transition: all 0.2s ease-in-out;
+				transform-origin: right;
+				transform: scale(0, 1);
+			}
+		}
+	}
+
+
+
+	.desktop &{
+		.HamburgerMenu{
+			margin-left: 0.5rem;
+
+			svg{
+				height: 0.6rem;
+			}
+		}
+	}
+}

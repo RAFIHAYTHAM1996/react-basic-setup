@@ -1,0 +1,111 @@
+/*
+ * ====================================================================
+ * fonts.scss
+ * Fonts go here, duh
+ * ====================================================================
+ */
+$fonts: '#{$ASSET_PATH}fonts/';
+
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 3384788, 2017-05-05T15:50:27-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: IntroRegular by Fontfabric
+ * URL: http://www.myfonts.com/fonts/font-fabric/intro/book/
+ *
+ * Webfont: IntroRegularItalic by Fontfabric
+ * URL: http://www.myfonts.com/fonts/font-fabric/intro/book-italic/
+ *
+ * Webfont: Intro by Fontfabric
+ * URL: http://www.myfonts.com/fonts/font-fabric/intro/regular/
+ *
+ * Webfont: IntroItalic by Fontfabric
+ * URL: http://www.myfonts.com/fonts/font-fabric/intro/regular-italic/
+ *
+ *
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3384788
+ * Licensed pageviews: 20,000
+ * Webfonts copyright: Copyright (c) 2012 by Fontfabric LLC. All rights reserved.
+ *
+ * © 2017 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/33a5d4");
+@import url("//hello.myfonts.net/count/33aed6");
+
+//
+// @font-face {
+//   font-family: 'Intro';
+//   src: url($fonts + '33AED6_0_0.eot');
+//   src: url($fonts + '33AED6_0_0.eot?#iefix') format('embedded-opentype'),
+//   url($fonts + '33AED6_0_0.woff2') format('woff2'),
+//   url($fonts + '33AED6_0_0.woff') format('woff'),
+//   url($fonts + '33AED6_0_0.ttf') format('truetype');
+//   font-weight: 800;
+//   font-style: normal;
+// }
+//
+// @font-face {
+//   font-family: 'Intro';
+//   src: url($fonts + '33AED6_0_0.eot');
+//   src: url($fonts + '33AED6_0_0.eot?#iefix') format('embedded-opentype'),
+//   url($fonts + '33AED6_0_0.woff2') format('woff2'),
+//   url($fonts + '33AED6_0_0.woff') format('woff'),
+//   url($fonts + '33AED6_0_0.ttf') format('truetype');
+//   font-weight: 800;
+//   font-style: italic;
+// }
+//
+// @font-face {
+//   font-family: 'Intro';
+//   src: url($fonts + '33A5D4_0_0.eot');
+//   src: url($fonts + '33A5D4_0_0.eot?#iefix') format('embedded-opentype'),
+//       url($fonts + '33A5D4_0_0.woff2') format('woff2'),
+//       url($fonts + '33A5D4_0_0.woff') format('woff'),
+//       url($fonts + '33A5D4_0_0.ttf') format('truetype');
+//   font-weight: 400;
+//   font-style: normal;
+// }
+//
+//
+// @font-face {
+//   font-family: 'Intro';
+//   src: url($fonts + '33A5D4_1_0.eot');
+//   src: url($fonts + '33A5D4_1_0.eot?#iefix') format('embedded-opentype'),url($fonts + '33A5D4_1_0.woff2') format('woff2'),url($fonts + '33A5D4_1_0.woff') format('woff'),url($fonts + '33A5D4_1_0.ttf') format('truetype');
+//   font-weight: 400;
+//   font-style: italic;
+// }
+//
+//
+// @font-face {
+//   font-family: 'Intro';
+//   src: url($fonts + '33A5D4_2_0.eot');
+//   src: url($fonts + '33A5D4_2_0.eot?#iefix') format('embedded-opentype'),url($fonts + '33A5D4_2_0.woff2') format('woff2'),url($fonts + '33A5D4_2_0.woff') format('woff'),url($fonts + '33A5D4_2_0.ttf') format('truetype');
+//   font-weight: 600;
+//   font-style: normal;
+// }
+//
+// @font-face {
+//   font-family: 'Intro';
+//   src: url($fonts + '33A5D4_3_0.eot');
+//   src: url($fonts + '33A5D4_3_0.eot?#iefix') format('embedded-opentype'),url($fonts + '33A5D4_3_0.woff2') format('woff2'),url($fonts + '33A5D4_3_0.woff') format('woff'),url($fonts + '33A5D4_3_0.ttf') format('truetype');
+//   font-weight: 600;
+//   font-style: italic;
+// }
+
+@font-face {
+  font-family: 'Poiret One';
+  src: url($fonts + 'PoiretOne.ttf'),
+  url($fonts + 'PoiretOne.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}

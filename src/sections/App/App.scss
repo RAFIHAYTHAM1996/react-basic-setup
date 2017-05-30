@@ -1,0 +1,17 @@
+#app {
+  height: 100%;
+  #content {
+    height: 100%;
+  }
+  #SectionCover{
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    background-color: $main-medium;
+    position: absolute;
+    top:0px;
+    left:100vw;
+    z-index: 2;
+    opacity: 1;
+  }
+}

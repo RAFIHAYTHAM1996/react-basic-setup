@@ -1,0 +1,50 @@
+
+#Home{
+  #LandingImage{
+    position: fixed;
+    background: url("./assets/images/portrait.jpg") no-repeat;
+    height: 100vh;
+    background-size: contain;
+  }
+
+  #MainMessage{
+    color: $grey-light;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    overflow: hidden;
+    height: 50vh;
+    max-width: 50vw;
+    font-size: 4vw;
+    font-family: "Poiret One", sans-serif;
+    font-weight: 800;
+    text-align: right;
+    right: 5vw;
+    top:20vw;
+    //background: linear-gradient( crimson , crimson) no-repeat 0 0;
+    //background-size: 0 100%;
+    //animation: stripes 2s linear normal;
+
+    // span{
+    //   background: black;
+    //   color: white;
+    //   mix-blend-mode: multiply
+    // }
+
+    span{
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes stripes {
+    to {
+      background-size:100% 100%;
+    }
+  }
+
+  @keyframes stripes {
+    to {
+      background-size:100% 100%;
+    }
+  }
+}
