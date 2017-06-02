@@ -9,10 +9,10 @@ import detect from '../util/detect';
 
 import store from '../store';
 import App from '../sections/App/App';
-import Landing from '../sections/Landing/Landing';
+import Home from '../sections/Home/Home';
 import Work from '../sections/Work/Work';
-import Section from '../components/Section/Section';
-import SectionManager from '../components/SectionManager/SectionManager';
+import Contact from '../sections/Contact/Contact';
+import About from '../sections/About/About';
 
 const history = syncHistoryWithStore(useRouterHistory(createBrowserHistory)({ basename: process.env.BASENAME }), store);
 
@@ -34,10 +34,11 @@ export default function() {
     <Provider store={store}>
       <Router history={history}>
         <Route path="/" component={App}>
-        <IndexRoute component={SectionManager}/>
-        <Route path="home" component={SectionManager}/>
-        <Route path="work" component={SectionManager}/>
-        <Route path="contact" component={SectionManager}/>
+          <IndexRoute component={Home}/>
+          <Route path="home" component={Home}/>
+          <Route path="work" component={Work}/>
+          <Route path="contact" component={Contact}/>
+          <Route path="about" component={About}/>
           {TestRoutes && <Route path="/test" component={Test}>{TestRoutes}</Route>}
           <Redirect path="*" to="/"/>
         </Route>

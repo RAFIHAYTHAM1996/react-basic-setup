@@ -6,7 +6,6 @@ import RotateScreen from '../../components/Rotate/Rotate';
 import { setReady, setProgress, setAssets } from './actions';
 import TransitionGroup from 'react-transition-group-plus';
 import detect from '../../util/detect';
-import SectionManager from "../../components/SectionManager/SectionManager";
 import Menu from '../../components/Menu/Menu';
 import MenuButton from '../../components/MenuButton/MenuButton';
 
@@ -40,7 +39,7 @@ class App extends React.Component {
       return React.cloneElement(this.props.children, {
         key: this.props.section,
         windowWidth: this.state.width,
-        windowHeight: this.state.height
+        windowHeight: this.state.height,
       });
     } else {
       return <Preloader
@@ -54,7 +53,8 @@ class App extends React.Component {
   }
 
   handleOnClick = (route) => {
-     
+    console.log(this.props.children);
+    this.props.children.componentWillLeave(() => {this.context.router.push(this.props.section.nextSection)});
   }
 
   render() {

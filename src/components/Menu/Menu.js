@@ -3,7 +3,7 @@ import bar from '../../../raw-assets/svg/bar.svg'
 import keys from '../../reducers/keys.js';
 import { connect } from 'react-redux';
 import {toggleMenu} from '../../actions/menu';
-import {changeSection, setCurrSection} from '../../actions/sectionManager';
+import {changeSection} from '../../actions/sectionManager';
 import { TweenMax, TimelineMax, EasePack} from 'gsap';
 
 class Menu extends Component{
@@ -11,14 +11,10 @@ class Menu extends Component{
   constructor(props) {
     super(props);
     this.onMenuToggle = this.props.onMenuToggle.bind(this);
-    this.setCurrSection = this.props.setCurrSection.bind(this);
     this.changeSection = this.props.changeSection.bind(this);
     this.animateInOut = this.animateInOut.bind(this);
     this.tl = new TimelineMax();
-    this.GetCurrentSection = this.GetCurrentSection.bind(this);
-    this.GetChildNodeWithClassName = this.GetChildNodeWithClassName.bind(this);
     this.routes = this.props.routes;
-    this.handleOnClick = this.props.parent.handleOnClick.bind(this);
   }
 
   componentDidMount(){
@@ -81,26 +77,9 @@ class Menu extends Component{
     }
   }
 
-  GetCurrentSection(){
-		const currentRoute = this.routes;
-		currentRoute.pathname = currentRoute.pathname ? currentRoute.pathname.charAt(0).toUpperCase() + currentRoute.pathname.slice(1) : 'Home';
-		return document.getElementById(currentRoute.pathname) ? document.getElementById(currentRoute.pathname) : 'undefined';
-	}
-
-  GetChildNodeWithClassName(parentNode, childClassName){
-    console.log(parentNode.childNodes);
-    var childnodes = parentNode.childNodes;
-    for(var i = 0, len = childnodes.length; i < len; i++){
-      if(childnodes[i].className === childClassName){
-        return childnodes[i];
-      }
-    }
-  }
-
   OnClick(route){
     this.onMenuToggle();
     this.changeSection({nextSection: route});
-    this.handleOnClick(route);
   }
 
 	render(){
@@ -129,6 +108,11 @@ class Menu extends Component{
 
 }
 
+Menu.contextTypes = {
+  router: React.PropTypes.object,
+  store: React.PropTypes.object
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
     menuState: state.menuToggle.menuState,
@@ -140,8 +124,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onMenuToggle: val => dispatch(toggleMenu(val)),
-    changeSection: val => dispatch(changeSection(val)),
-    setCurrSection: val => dispatch(setCurrSection(val))
+    changeSection: val => dispatch(changeSection(val))
   }
 };
 

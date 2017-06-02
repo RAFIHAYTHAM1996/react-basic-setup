@@ -14,7 +14,7 @@ function getPreloadList(cb) {
     count++;
     if (count>=data.length) {
       assets = assets.map(function(cur) {
-        return (junk.not(path.basename(cur))) ? path.join(config.ASSET_PATH,path.normalize(cur).replace(path.normalize(config.raw),'')) : undefined; 
+        return (junk.not(path.basename(cur))) ? path.join(config.ASSET_PATH,path.normalize(cur).replace(path.normalize(config.raw),'')) : undefined;
       }).filter(Boolean);
       if (cb) {
         cb(assets);

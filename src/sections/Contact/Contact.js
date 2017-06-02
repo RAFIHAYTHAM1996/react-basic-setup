@@ -17,7 +17,7 @@ class Contact extends Component{
 
 		return(
 			<Section id="Contact">
-
+				
 			</Section>
 		);
 	}
