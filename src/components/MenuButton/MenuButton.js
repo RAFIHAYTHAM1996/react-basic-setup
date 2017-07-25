@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import bar from '../../../raw-assets/svg/bar.svg'
-import SVGInline from "react-svg-inline";
+import HamburgerMenu from '../../../raw-assets/svg/HamburgerMenu.svg'
 import { toggleMenu } from '../../actions/menu';
 import { TweenMax, TimelineMax, EasePack } from 'gsap';
 import Menu from '../Menu/Menu';
@@ -13,35 +13,53 @@ class MenuButton extends Component{
     super(props);
     this.onMenuToggle = this.props.onMenuToggle.bind(this);
     this.animateInOut = this.animateInOut.bind(this);
-    this.tl = new TimelineMax();
+    this.tl = new TimelineMax({paused: true});
     this.OnAnimationDelay = 2;
+    this.time = 0.3;
     this.GetCurrentSectionName = this.GetCurrentSectionName.bind(this);
   }
 
   componentDidMount(){
+    this.HamburgerMenu = this.HamburgerMenu.childNodes[0].childNodes[1];
+    this.circle = this.HamburgerMenu.childNodes[1];
+    this.topHamburgerBar = this.HamburgerMenu.childNodes[3];
+    this.middleHamburgerBar = this.HamburgerMenu.childNodes[5];
+    this.bottomHamburgerBar = this.HamburgerMenu.childNodes[7];
+    this.tl = this.createTimeline();
     this.animateInOut();
   }
 
   componentDidUpdate(){
+    this.HamburgerMenu = this.HamburgerMenu.childNodes[0].childNodes[1];
+    this.circle = this.HamburgerMenu.childNodes[1];
+    this.topHamburgerBar = this.HamburgerMenu.childNodes[3];
+    this.middleHamburgerBar = this.HamburgerMenu.childNodes[5];
+    this.bottomHamburgerBar = this.HamburgerMenu.childNodes[7];
     this.animateInOut();
   }
 
-  animateInOut(){
-    var MenuButton = document.getElementById("MenuButton");
+  createTimeline = (done) => {
+    this.tl.kill();
+    this.tl.stop();
+    this.tl = new TimelineMax({paused: true});
+    this.tl.add(TweenMax.to([this.topHamburgerBar, this.middleHamburgerBar, this.bottomHamburgerBar], 0, {scaleX: 0, ease: Power1.easeIn}));
+    this.tl.add(TweenMax.to(this.circle, this.time, {strokeDashoffset: 0, ease: Back.easeIn, delay: this.OnAnimationDelay}));
+    this.tl.add(TweenMax.to(this.circle, this.time, {fillOpacity: 1, ease: Back.easeOut}));
+    this.tl.add(TweenMax.to([this.topHamburgerBar, this.middleHamburgerBar, this.bottomHamburgerBar], this.time, {fillOpacity: 1, ease: Back.easeOut, delay: -this.time}));
+    this.tl.add(TweenMax.to([this.topHamburgerBar, this.middleHamburgerBar, this.bottomHamburgerBar], this.time, {scaleX: 1, ease: Power1.easeIn}));
+    this.tl.add(TweenMax.to(this.topHamburgerBar, this.time, {y: 0, ease: Power3.easeOut, delay: this.time/2}));
+    this.tl.add(TweenMax.to(this.bottomHamburgerBar, this.time, {y: 0, ease: Power3.easeOut, delay: -this.time}));
+    return this.tl;
+  }
 
-    if(MenuButton){
-      this.tl.kill();
+  animateInOut(){
+    if(this.MenuButton){
       if(this.props.menuState === keys.MENU_OFF){
-        this.tl.add(TweenMax.to(MenuButton, 0, {right: "-16vw"}));
-        this.tl.add(TweenMax.to(MenuButton, 0, {visibility: "visible", delay: this.OnAnimationDelay}));
-        this.tl.add(TweenMax.fromTo(MenuButton, 0.5, {skewX: -30}, {right: "5vw", skewX: 0, opacity: 1, ease: Power1.easeIn}));
+        this.tl.play();
       }
       else if(this.props.menuState === keys.MENU_ON){
-        var middleBar = document.getElementsByClassName("middle-bar")[0];
-        this.tl.add(TweenMax.to(MenuButton, 0.5, {right: "0vw", skewX: 30, opacity: 0, ease: Power1.easeOut}));
-        this.tl.add(TweenMax.to(MenuButton, 0.5, {visibility: "hidden"}));
+        this.tl.reverse();
       }
-      this.tl.play();
     }
   }
 
@@ -51,33 +69,14 @@ class MenuButton extends Component{
 
 	render(){
 		return (
-			<div className="MenuButton" id="MenuButton" style={{background: this.props.bgColor}} onClick={this.onMenuToggle}>
-      <div className="text">
-        <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 100 100" className="MenuFront">
-         <text x="0" y="25">
-           MENU
-         </text>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 100 100" className="MenuBack">
-         <text x="0" y="25">
-           MENU
-         </text>
-        </svg>
-      </div>
-      <div className="HamburgerMenu">
-        <svg dangerouslySetInnerHTML={{__html: bar}}>
-        </svg>
-        <svg dangerouslySetInnerHTML={{__html: bar}} className="middle-bar">
-        </svg>
-        <svg dangerouslySetInnerHTML={{__html: bar}}>
-        </svg>
-      </div>
+			<div className="MenuButton" id="MenuButton" ref={el => this.MenuButton = el} style={{background: this.props.bgColor}} onClick={this.onMenuToggle}>
+        <div className="HamburgerMenu">
+          <svg dangerouslySetInnerHTML={{__html: HamburgerMenu}} ref={el => this.HamburgerMenu = el}>
+          </svg>
+        </div>
 			</div>
 		);
 	}
-
 }
 
 const mapStateToProps = (state, ownProps) => {

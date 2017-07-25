@@ -1,102 +1,94 @@
 import React, {Component} from 'react';
 import Section from '../../components/Section/Section';
-import Image from '../../components/Image/Image';
-import Masonry from 'masonry-layout';
+import Gallery from '../../components/Gallery/Gallery';
 import keys from '../../reducers/keys.js';
 import { connect } from 'react-redux';
 import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
-import galleryImages from '../../../raw-assets/json/galleryImages.json';
-import bar from '../../../raw-assets/svg/bar.svg';
+import BackButton from '../../components/BackButton/BackButton';
+import Image from '../../components/Image/Image';
 
 class Work extends Component{
 
 	constructor(props) {
     super(props);
-    this.tl = new TimelineMax();
 		this.message = [..."WORK"];
-		this.delay = 2;
-		this.src = "../../../assets/images/gallery/";
-		this.scrollPosition = 0;
+		this.videos = [];
+		this.state = {
+			ready: false,
+			category: "",
+	    playing: [],
+	    volume: 0.8,
+  	}
   }
 
   componentDidMount(){
-		this.InAnimationTimeline = this.CreateInAnimation();
-		this.animateIn();
-		this.delay = 1;
   }
 
   componentDidUpdate(){
+
   }
 
-	CreateInAnimation(){
-		var elements = [...document.getElementsByClassName("galleryImage")],
+	CreateOptionContainerOutAnim(callback){
+		var elements = [...document.getElementsByClassName("OptionCard")],
+				OptionsContainer = document.getElementById("OptionsContainer"),
 				timeline = new TimelineMax({paused: true});
-		timeline.staggerTo(elements,  0.3, {opacity: 1, ease: Power3.easeInOut}, 0.1);
+
+		timeline.to(elements,  0.5, {opacity: 0, ease: Power3.easeInOut});
+		timeline.to(elements,  0.2, {margin: "-15vw", ease: Back.easeIn, delay: -0.3});
+		timeline.to(OptionsContainer, 0.3, {height: "100vh", width: "100vw", top: 0, left: 0, ease: Back.easeIn, onComplete: callback});
 		return timeline;
 	}
 
-	animateIn(){
-		this.InAnimationTimeline.play();
+	showCategory(category){
+		this.CreateOptionContainerOutAnim(() => {
+			this.setState({ready: true, category: category});
+		}).play();
 	}
 
-	toggleImage(itemSrc){
-		var elements = [...document.getElementsByClassName("galleryImage")],
-				EnlargedImageContainer = document.getElementById("EnlargedImageContainer"),
-				EnlargedImage = document.getElementById("EnlargedImage"),
-				Work = document.getElementById("Work");
-
-		EnlargedImage.src = this.src + itemSrc;
-		var timeline = new TimelineMax({paused: true});
-
-		this.scrollPosition = Work.scrollTop;
-		timeline.add(TweenMax.to(Work, 0.5, {scrollTop: 0, ease: Power3.easeInOut}));
-		timeline.add(TweenMax.to(Work, 0, {overflowY: "hidden", ease: Power3.easeInOut}));
-	 	timeline.add(TweenMax.staggerTo(elements, 0.3, {opacity: 0, ease: Power3.easeInOut}, 0.1));
-		timeline.add(TweenMax.to(EnlargedImageContainer, 0, {display: "block", ease: Power3.easeInOut}));
-		timeline.add(TweenMax.to(EnlargedImageContainer, 1, {opacity: 1, left: 0, ease: Back.easeOut}));
-		timeline.add(TweenMax.to(EnlargedImage, 1, {height: "100vh", left: 0, top: 0, ease: Power3.easeInOut}));
-		timeline.play();
-	}
-
-	closeEnlargedImageContainer(){
-		var elements = [...document.getElementsByClassName("galleryImage")],
-				EnlargedImageContainer = document.getElementById("EnlargedImageContainer"),
-				EnlargedImage = document.getElementById("EnlargedImage"),
-				Work = document.getElementById("Work");
-
-		var timeline = new TimelineMax({paused: true});
-		if(parseInt(EnlargedImageContainer.style.left) === 0){
-			timeline.add(TweenMax.to(EnlargedImage, 1, {height: "80vh", left: "10vw", top: "10vh", ease: Power3.easeInOut}));
-			timeline.add(TweenMax.to(EnlargedImageContainer, 1, {opacity: 0, left: "-100vw", ease: Back.easeOut}));
-			timeline.add(TweenMax.to(EnlargedImageContainer, 0, {display: "none", delay: 0.5, ease: Power3.easeInOut}));
-			timeline.add(TweenMax.staggerTo(elements, 0.3, {opacity: 1, ease: Power3.easeInOut}, 0.1));
-			timeline.add(TweenMax.to(Work, 0, {overflowY: "scroll", ease: Power3.easeInOut}));
-			timeline.add(TweenMax.to(Work, 0.5, {scrollTop: this.scrollPosition, ease: Power3.easeInOut}));
-			timeline.play();
+	closeGallery(){
+		var callback = ()=>{
+			this.setState({ready: false, category: ""});
 		}
+		this.gallery.close(callback.bind(this));
 	}
 
 	render(){
+		navigator.geolocation.getCurrentPosition((position)=>{
+	    console.log(position);
+	  });
+
 		return(
-			<Section id="Work">
-				<div className="EnlargedImageContainer" id="EnlargedImageContainer" onClick={this.closeEnlargedImageContainer.bind(this)}>
-					<img id="EnlargedImage" src="../../../assets/images/gallery/DSC_0786.jpg" />
-				</div>
-				<div className="grid">
-					{
-						galleryImages["images"].map((item, index) =>{
-							return(
-							<div className="grid-item galleryImage" id={"image" + index} key={"imageDiv" + index} onClick={this.toggleImage.bind(this, item.src)}>
-								<div className="desc">
-									{
-										item.alt
-									}
+			<Section id="Work" bgColor="">
+				{
+					this.state.ready ? (
+						<div>
+							<Gallery category={this.state.category} ref={ el => this.gallery = el} />,
+							<BackButton backAction={this.closeGallery.bind(this)}/>
+						</div>
+					) : (
+						<div id="OptionsContainer">
+							<div className="OptionCard" onClick={this.showCategory.bind(this, "images")}>
+								<div className="title">
+									Photography
 								</div>
-								<img src={this.src + item.src} />
-							</div>)
-						})
-					}
-				</div>
+								<img src="../../../assets/images/work/photography.jpg" alt="Photography" />
+							</div>
+							<div className="OptionCard" onClick={this.showCategory.bind(this, "videos")}>
+								<div className="title">
+									<p className="top">Videography</p>
+								</div>
+								<img src="../../../assets/images/work/videography.jpg" alt="Videography" />
+							</div>
+							<div className="OptionCard">
+								<div className="title">
+									<p className="top">DSC_0776</p>
+								</div>
+								<img src="../../../assets/images/work/DSC_0776.jpg" alt="Videography" />
+							</div>
+
+						</div>
+					)
+				}
 				{this.props.children}
 			</Section>
 		);

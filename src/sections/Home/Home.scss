@@ -1,38 +1,152 @@
-
 #Home{
+  background-color: $background;
+  // background: url("./assets/images/background1.jpg") no-repeat;
+  background-size: cover;
+
+
   #LandingImage{
-    position: fixed;
-    background: url("./assets/images/portrait.jpg") no-repeat;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100vh;
-    background-size: contain;
+    width: 100vw;
+
+    img {
+      transform: scale(1.01);
+    }
+
+    .portrait & {
+      img {
+        margin-left: -95%;
+        filter: blur(1vw);
+        height: 100%;
+      }
+    }
+
+    .landscape & {
+      img {
+        width: 100%;
+        filter: blur(0.3vw);
+      }
+    }
   }
 
   #MainMessage{
-    color: $grey-light;
+    @extend .ExoLight;
+    color: #eee;
     position: absolute;
     z-index: 1;
     display: block;
     overflow: hidden;
-    height: 50vh;
-    max-width: 50vw;
-    font-size: 4vw;
-    font-family: "Poiret One", sans-serif;
-    font-weight: 800;
-    text-align: right;
-    right: 5vw;
-    top:20vw;
-    //background: linear-gradient( crimson , crimson) no-repeat 0 0;
-    //background-size: 0 100%;
-    //animation: stripes 2s linear normal;
+    line-height: 1;
+    text-align: left;
 
-    // span{
-    //   background: black;
-    //   color: white;
-    //   mix-blend-mode: multiply
-    // }
+    h1 {
+      @extend .ExoBlack;
+      text-transform: uppercase;
+      color: $main-medium;
+    }
+
+    .landscape & {
+      width: 50%;
+      height: 15vw;
+      font-size: 1.5vw;
+      left: 25vw;
+      top: calc(50vh - 7.5vw);
+      text-align: center;
+
+      div {
+        display: inline-block;
+
+        &::after {
+          content: " ";
+          display: block;
+          font-size: 2vw;
+        }
+      }
+
+      h1 {
+        font-size: 6.8vw;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+
+    .portrait & {
+      width: 80vw;
+      font-size: 7vw;
+      left: 10vw;
+      top: calc(50vh - 35vw);
+
+      h1 {
+        font-size: 10vw;
+        line-height: 1.2;
+      }
+    }
+
 
     span{
       opacity: 0;
+    }
+
+    .special {
+      color: $main-darker;
+      text-shadow: 0 0 5vw $main-medium;
+    }
+  }
+
+  .ViewWork {
+    display: block;
+    @extend .Lato-Medium;
+    position: absolute;
+    text-align: center;
+    color: $main-darker;
+    cursor: pointer;
+    border: 1px solid $main-darker;
+    transition: all 0.3s ease-in-out;
+    transform-origin: left;
+    z-index: 1;
+    background: rgba(102, 83, 91, 0.2);
+
+    .portrait & {
+      height: 15vw;
+      width: 40vw;
+      left: 30vw;
+      bottom: 20vw;
+      border-radius: 10vw;
+      font-size: 5vw;
+      line-height: 15vw;
+    }
+
+    .landscape & {
+      height: 5.625vw;
+      width: 15vw;
+      left: 42.5vw;
+      bottom: 5vw;
+      border-radius: 10vw;
+      font-size: 1.5vw;
+      line-height: 5.625vw;
+    }
+
+    &:hover, &:active {
+      color: white;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      background: $main-dark;
+      bottom: 0;
+      left: 0;
+      top: 0;
+      right: 100%;
+      z-index: -1;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover:before, &:active:before {
+      right: 0;
     }
   }
 

@@ -1,25 +1,85 @@
 #app {
   height: 100%;
+
   #content {
     display: block;
     height: 100vh;
     width: 100vw;
-    background-color: black;
-    overflow: visible;
+    background-color: $background;
+    overflow: hidden;
     z-index: 0;
     position: absolute;
     transform: scale(1);
     opacity: 1;
   }
+
+  .LogoBackground {
+    position: fixed;
+    fill: white;
+    transform: scale(1.5);
+
+    stroke: white;
+    stroke-width: 2;
+    stroke-dasharray: 50;
+
+    .portrait & {
+      height: 10vw;
+      width: 10vw;
+      top: 10vw;
+      left: 10vw;
+    }
+
+    .landscape & {
+      height: 4vw;
+      width: 4vw;
+      top: 5vw;
+      left: 5vw;
+    }
+  }
+
+  .Logo {
+    position: fixed;
+    fill: none;
+    stroke-dashoffset: 120;
+    stroke-dasharray: 120;
+    stroke: $grey-medium;
+
+    .portrait & {
+      stroke-width: 3;
+      height: 10vw;
+      width: 10vw;
+      top: 10vw;
+      left: 10vw;
+    }
+
+    .landscape & {
+      stroke-width: 5;
+      height: 4vw;
+      width: 4vw;
+      top: 5vw;
+      left: 5vw;
+    }
+
+  }
+
   #SectionCover{
     display: block;
     height: 100vh;
     width: 100vw;
-    background-color: $main-medium;
+    background-color: $grey-light;
     position: absolute;
-    top:0px;
-    left:100vw;
     z-index: 2;
     opacity: 1;
+
+    .landscape & {
+      top:0px;
+      left:100vw;
+    }
+
+    .portrait & {
+      top: 100vh;
+      left: 0;
+    }
+
   }
 }

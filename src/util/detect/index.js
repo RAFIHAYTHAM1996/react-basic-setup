@@ -20,6 +20,10 @@ var checkVendor = function() {
   return (navigator.vendor) ? navigator.vendor.toLowerCase() : "";
 };
 
+var checkOrientation = function(){
+  return (window.innerWidth > window.innerHeight) ? 'landscape' : 'portrait';
+}
+
 var checkBrowser = function() {
   var browser = 'unknown';
   var uaLower = ua.toLowerCase();
@@ -57,7 +61,7 @@ var checkManufacturer = function() {
 };
 
 var getClasses = function() {
-  var classes = [checkDevice(), 'x' + checkDevicePixelRatio(), checkBrowser(), 'v' + utilBrowser.checkVersion(), (utilOS.os()).replace(/\s/g, '_').toLocaleLowerCase()];
+  var classes = [checkDevice(), 'x' + checkDevicePixelRatio(), checkOrientation(), checkBrowser(), 'v' + utilBrowser.checkVersion(), (utilOS.os()).replace(/\s/g, '_').toLocaleLowerCase()];
   if (md.mobile()) classes.push(checkManufacturer());
   return classes.filter(function(cur) { return !!cur; });
 };
@@ -82,8 +86,9 @@ module.exports = {
   isIE: !!((ua.toLowerCase().indexOf('msie') >= 0) || (ua.toLowerCase().indexOf('trident/') >= 0)),
   isEdge: (ua.toLowerCase().indexOf('edge') >= 0),
   isFirefox: (checkBrowser().indexOf('firefox') >= 0),
-  isSafari: (checkBrowser().indexOf("safari") >= 0 && checkVendor().indexOf("apple") >= 0),
+  isSafari: (checkBrowser().indexOf("safari") >= 0 || checkVendor().indexOf("apple") >= 0),
   isOpera: (checkBrowser().indexOf("opera") >= 0),
+  orientation: checkOrientation(),
   md: md,
   get orientation() {
     if (window.screen) {

@@ -1,3 +1,32 @@
 #About{
 
+  background-color: $background;
+  // background: url("./assets/images/background1.jpg") no-repeat;
+  // background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: white;
+
+  .Content {
+    margin: auto;
+
+    h1, p {
+      @extend .ExoLight;
+      color: $grey-lighter;
+    }
+
+    .landscape & {
+      width: 40%;
+    }
+
+    .portrait & {
+      width: 80%;
+    }
+
+  }
+
 }

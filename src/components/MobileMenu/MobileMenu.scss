@@ -1,0 +1,90 @@
+.MobileMenu {
+
+	position: absolute;
+	background-color: $menu-background;
+	height: 0;
+	width: 100vw;
+	z-index: 10;
+	top: 0;
+	left: 0;
+
+	transition: all 0.5s ease-in-out;
+
+	#CloseButton{
+		svg{
+			position: absolute;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+			transform-origin: center;
+			right: 5vw;
+			top: 5vw;
+			fill: $menu-link-dark;
+
+			.portrait & {
+				width:7vh;
+				max-height: 7vh;
+			}
+
+			.circle {
+				fill: white;
+			}
+		}
+	}
+
+	.LinksContainer {
+		height: 90vw;
+		width: 90vw;
+		margin-top: calc(50vh - 45vw);
+		margin-left: 5vw;
+		transform: rotateZ(-45deg);
+
+		text {
+			@extend .ExoMedium;
+			font-size: 2px;
+			text-align: center;
+			fill: white;
+		}
+	}
+
+	.Link {
+		fill: $menu-link-dark;
+		stroke-width: 0.1;
+		stroke: $menu-background;
+
+		&:hover, &:active {
+			fill: $menu-link-darker;
+		}
+	}
+
+	.CenterCircle {
+		height: 25vw;
+		width: 25vw;
+		position: absolute;
+		top: calc(50vh - 12.5vw);
+		left: 37.5vw;
+		transform: rotateZ(-90deg);
+
+		g {
+			circle {
+				fill: white;
+				fill-opacity: 0;
+				stroke-width: 0.5;
+				stroke: white;
+				stroke-dasharray: 50;
+			}
+		}
+	}
+
+	.CenterCircleText {
+		position: absolute;
+		top: calc(50vh - 7.5vw);
+		left: 42.5vw;
+		fill: none;
+		height: 15vw;
+		width: 15vw;
+
+		stroke-width: 2;
+		stroke: $grey-medium;
+		stroke-dasharray: 120;
+	}
+}

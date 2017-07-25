@@ -1,0 +1,71 @@
+{
+	"images": [
+		{
+			"src": "DSC_0776.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0785.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0786.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0810.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0817.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0818.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0849.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0852.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0857.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_0907.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+		{
+			"src": "DSC_1001.jpg",
+			"alt": "",
+			"fileFormat": "jpg"
+		},
+	],
+	"videos": [
+		{
+			"src": "DSC_0942.mp4",
+			"alt": "",
+			"fileFormat": "mp4"
+		},
+		{
+			"src": "DSC_0947.mp4",
+			"alt": "",
+			"fileFormat": "mp4"
+		},
+	]
+}

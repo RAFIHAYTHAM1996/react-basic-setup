@@ -4,10 +4,28 @@
  * 	Used to set variables used throughout scss files
  * ====================================================================
  */
-$main-medium: #97273f;
-$main-dark: #4d1420;
+// $main-light: #0e95ab;
+// $main-medium: #8badb3;
+// $main-dark: #657e82;
+
+$main-light: #bf9baa;
+$main-medium: #a68693;
+$main-dark: #806771;
+$main-darker: #66535b;
+
+
+$grey-lighter: #EEE;
 $grey-light: #CCCCCC;
+$grey-medium: #444;
 $grey-dark: #222;
+$grey-darker: #111;
+
+$menu-background: $main-darker;
+$menu-link-light: $main-light;
+$menu-link-dark: $main-dark;
+$menu-link-darker: darken($main-darker, 1);
+
+$background: $main-dark;
 
 $ASSET_PATH: './assets/' !default;
 $images: '#{$ASSET_PATH}images/';

@@ -4,6 +4,9 @@ import Image from '../../components/Image/Image';
 import keys from '../../reducers/keys.js';
 import { connect } from 'react-redux';
 import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
+import ThreeModel from './ThreeJs/index.js';
+import {toggleMenu} from '../../actions/menu';
+import {changeSection} from '../../actions/sectionManager';
 
 class Home extends Component{
 
@@ -11,8 +14,18 @@ class Home extends Component{
     super(props);
     this.animateInOut = this.animateInOut.bind(this);
     this.tl = new TimelineMax();
-		this.message = [..."WHERE CREATIVE DESIGN MEETS STATE-OF-THE-ART TECHNOLOGY"];
+		this.message = [
+			"A",
+			"SOFTWARE ENGINEER",
+			"WITH THE",
+			"IMAGINATION",
+			"OF AN",
+			"ARTIST"
+		];
 		this.delay = 2;
+		this.animatingFirstTime = true;
+		this.onMenuToggle = this.props.onMenuToggle.bind(this);
+    this.changeSection = this.props.changeSection.bind(this);
   }
 
   componentDidMount(){
@@ -33,48 +46,84 @@ class Home extends Component{
 				i -= 2;
 			}
 		}
-    if(this.props.menuState === keys.MENU_OFF){
+    if(this.props.menuState === keys.MENU_OFF && this.animatingFirstTime){
+			this.animatingFirstTime = false;
 			this.tl.add(TweenMax.staggerTo(text, 0.2, {opacity: "1", ease:Linear.easeNone, delay: 0.5}, 0.05));
     }
-    else if(this.props.menuState === keys.MENU_ON){
+    else if(this.props.menuState === keys.MENU_ON && this.animatingFirstTime){
+			this.animatingFirstTime = false;
 			this.tl.add(TweenMax.staggerTo(text, 0.2, {opacity: "0", ease:Linear.easeNone, delay: 0}, 0.05));
     }
 
     this.tl.play();
   }
 
+	OnClick(route){
+		this.changeSection({nextSection: route});
+	}
+
 	render(){
 
 		return(
-			<Section id="Home">
+			<Section id="Home" bgColor="">
+				<div id="LandingImage">
+					<Image src="./assets/images/background2.jpg"/>
+				</div>
 				<div className="MainMessage" id="MainMessage">
-					{this.message.map( (character, index) =>
+					<h1>Rafi George</h1>
+					{this.message.map( (phrase, index) =>
 						{
-							return(
-								<span key={index}>
-									{
-										character === " " ? " " : character
-									}
-								</span>
+							var specialClass = index === 1 || index === 5 ? "special" : ""
+							return (
+								<div key={index} className={specialClass}>
+								{
+									[...phrase].map( (character, characterIndex) => {
+										return (
+											<span key={characterIndex}>
+												{
+													character === " " ? " " : character
+												}
+											</span>
+										)
+									})
+								}
+								</div>
 							)
 						}
 					)}
 				</div>
-				<Image id="LandingImage" src="./assets/images/portrait.jpg"/>
+				<div className="ViewWork" onClick={ this.OnClick.bind(this, "work") }>
+					View Work
+				</div>
+				{ /* <ThreeModel /> */}
 				{this.props.children}
 			</Section>
 		);
 	}
 }
-//export default Home;
+
+Home.contextTypes = {
+	router: React.PropTypes.object,
+	store: React.PropTypes.object
+}
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
     menuState: state.menuToggle.menuState,
-		section: state.section
+		section: state.section,
+		routes: state.routing.locationBeforeTransitions,
   }
 };
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onMenuToggle: val => dispatch(toggleMenu(val)),
+		changeSection: val => dispatch(changeSection(val))
+	}
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+	mapDispatchToProps
 )(Home);

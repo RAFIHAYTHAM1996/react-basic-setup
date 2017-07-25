@@ -13,6 +13,7 @@ import Home from '../sections/Home/Home';
 import Work from '../sections/Work/Work';
 import Contact from '../sections/Contact/Contact';
 import About from '../sections/About/About';
+import UnderConstruction from '../sections/UnderConstruction/UnderConstruction';
 
 const history = syncHistoryWithStore(useRouterHistory(createBrowserHistory)({ basename: process.env.BASENAME }), store);
 

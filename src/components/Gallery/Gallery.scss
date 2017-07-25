@@ -1,0 +1,139 @@
+.Gallery{
+  height: auto;
+  transition: all 1s easeInOut;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  #EnlargedImageContainer{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    top: 0px;
+    left: -100vw;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    opacity: 0;
+    display: none;
+
+    img{
+      position: absolute;
+      height:80vh;
+      top: 10vh;
+      left: 10vw;
+    }
+
+    .CloseButton{
+  		display:flex;
+
+  		svg{
+  			width:10%;
+  			max-height: 40px;
+  			right: 0;
+  			top: 50vh;
+        position: absolute;
+  			cursor: pointer;
+  			transition: all 0.3s ease-in-out;
+  			transform-origin: center;
+  		}
+  		svg:hover{
+  			//transform: rotateZ(-180deg);
+        .front{
+          transform: rotateZ(45deg) rotateY(2deg);
+        }
+  		}
+
+      .front{
+        transition: all 0.3s ease-in-out;
+        transform-origin: center;
+        transform: rotateZ(45deg) scale(1.25, 0.75);
+      }
+      .back{
+        transition: all 0.3s ease-in-out;
+        transform-origin: center;
+        transform: rotateZ(-45deg) scale(1.25, 0.75);
+      }
+  	}
+  }
+
+  /* ---- grid ---- */
+
+  .grid {
+    position: absolute;
+    top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* clear fix */
+  .grid:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  /* ---- .grid-item ---- */
+
+  .grid-item {
+    float: left;
+
+    display: block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    width: 100%;
+    max-width: 100%;
+    max-height: 66.666vw;
+
+    opacity: 0;
+
+  }
+
+  .grid-item .desc{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    font-family: "Poiret One", sans-serif;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+  }
+
+  .grid-item img{
+    display: block;
+    max-width: 100%;
+    transition: all 1s ease;
+  }
+
+  .desktop &{
+    .grid-item {
+      width: 33.333%;
+      max-width: 33.333%;
+      max-height: calc(32.5vw * 0.66666666);
+      &:hover{
+          img{
+            max-width: 101%;
+          }
+          .desc{
+            transition: all 0.5s ease;
+            opacity: 1;
+          }
+      }
+    }
+    #EnlargedImageContainer{
+      .CloseButton{
+  			svg{
+  				width:20%;
+  				max-height: 80px;
+  			}
+      }
+		}
+  }
+}

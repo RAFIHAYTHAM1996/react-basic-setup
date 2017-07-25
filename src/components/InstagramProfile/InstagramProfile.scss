@@ -1,0 +1,56 @@
+.InstagramProfile{
+
+  display: block;
+  height: 80vh;
+  width: calc(80vh * 0.8);
+  background-color: $grey-darker;
+  color: $grey-light;
+  font-family: "Poiret One", sans-serif;
+  text-align: center;
+  margin: 5%;
+  overflow-y: scroll;
+
+  $margin-size: 4vh;
+
+  a{
+    display: inline-block;
+    width: 45%;
+    height: calc(80vh * 0.8 * 0.45);
+  }
+
+  h1{
+    margin-bottom: $margin-size;
+    display: inline-block;
+    font-size: 5vh;
+  }
+
+  .flex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: $margin-size;
+  }
+
+  img{
+    display: inline-block;
+
+    &#profilePicture{
+      margin: $margin-size;
+      max-width: 6vh;
+    }
+
+    &.thumbnail{
+      object-fit: cover;
+      height:100%;
+      width: 100%;
+    }
+  }
+
+  hr{
+    width: 80%;
+    margin-left: 10%;
+  }
+
+}

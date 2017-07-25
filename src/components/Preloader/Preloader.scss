@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: $background;
 
   .loader-icon {
     width: 50px;
@@ -15,7 +15,7 @@
 
     svg {
       animation: infinite-spinning 1s infinite;
-      fill: #fff;
+      fill: $main-medium;
       width: 100%;
       height: 100%;
     }

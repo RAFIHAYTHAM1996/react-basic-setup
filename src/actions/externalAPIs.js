@@ -1,19 +1,28 @@
 'use strict';
 import keys from '../reducers/keys';
-import axios from 'axios';
-import request from 'request';
-import restify from 'restify';
 
 export const PullFromInstagram =  function(data) {
 
   return function(dispatch, getState) {
 
-    const url = "http://localhost:1337/?data=123456789";
-    let igData = "";
+    const profileURL = "https://rafi-george.herokuapp.com/instagramProfile";
+    const recentMediaURL = "https://rafi-george.herokuapp.com/instagramRecentMedia";
 
-    axios.get(url)
-    .then((response) => {
-      console.log(response);
+    fetch(profileURL)
+    .then((response) => response.json())
+    .then(data => {
+      var obj = JSON.parse(data);
+      dispatch(SetInstagramProfile({retreivedData: obj.data}));
+    })
+    .catch(function(error) {
+      console.warn(`Failed to load:` + error.message);
+    });
+
+    fetch(recentMediaURL)
+    .then((response) => response.json())
+    .then(data => {
+      var obj = JSON.parse(data);
+      dispatch(SetInstagramRecentMedia({retreivedData: obj.data}));
     })
     .catch(function(error) {
       console.warn(`Failed to load:` + error.message);
@@ -29,10 +38,19 @@ export const RequestInstagramAccessToken = function(data){
   }
 };
 
-export const SetInstagramAccessToken = function(data){
+export const SetInstagramProfile = function(data){
 
   return{
-    type: keys.SET_INSTAGRAM_ACCESS_TOKEN,
+    type: keys.SET_INSTAGRAM_PROFILE,
+    data
+  }
+};
+
+
+export const SetInstagramRecentMedia = function(data){
+
+  return{
+    type: keys.SET_INSTAGRAM_RECENT_MEDIA,
     data
   }
 };

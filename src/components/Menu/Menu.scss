@@ -1,13 +1,8 @@
 .Menu {
 	position: fixed;
-	height: 5vw; //GSAP changes this to 86%
-	width: 0;	//GSAP changes this to 25%
-	top: 4vw;
-	right: 5vw;
 	visibility: hidden;
 	opacity: 1;
 	overflow: visible;
-	background: $main-medium;
 	z-index: 3;
 	transition: all 0.2s ease-in-out;
 
@@ -16,51 +11,101 @@
 		margin: 0px;
 	}
 
+	.landscape & {
+		top: 4vw;
+		right: 4vw;
+		height: 5vw; //GSAP changes this to 86%
+		width: 0;	//GSAP changes this to 25%
+		background: $menu-background;
+	}
+	.portrait & {
+		top: 0vw;
+		right: 0vw;
+		width: 100vw;
+		height: 0; //GSAP changes this to 100%
+		background: $grey-dark;
+	}
+
 	#CloseButton{
-		display:flex;
 
 		svg{
-			width:10%;
-			max-height: 40px;
-			right: 0;
-			top: 0;
 			position: absolute;
 			cursor: pointer;
 			transition: all 0.3s ease-in-out;
 			transform-origin: center;
-		}
-		svg:hover{
-			transform: rotateZ(-180deg);
+			right: 0;
+			top: 0;
+
+			.landscape & {
+				width:10%;
+				max-height: 40px;
+			}
+
+			.portrait & {
+				width:20%;
+				max-height: 10vh;
+			}
+
+			&:hover{
+				transform: rotateZ(-180deg);
+			}
 		}
 	}
 
 	ul.navList{
-		margin-top: 10vh;
 		list-style: none;
 
+		.landscape & {
+			margin-top: 10vh;
+		}
+
+		.portrait & {
+			margin-top: 15vh;
+		}
+
 		li a{
+			@extend .PoiretOne;
 			text-decoration: none;
-			font-family: 'Poiret One', sans-serif;
-			font-size: 5vw;
 			text-transform: uppercase;
-			padding: 5% 0 5% 10%;
 			transition: all 0.3s ease-in-out;
 			overflow: hidden;
-			height: 0px;
-			max-height: 4vw;
-			box-shadow: inset -0.2rem 0 0 0 $grey-light;
+			// height: 0px;
 			position: relative;
 			float: left;
-			margin-top: 5px;
-
-			color: $grey-light;
-			width: 90%;
+			cursor: pointer;
+			color: white;
 			left: 0;
+			transform: scaleY(0.8);
+			opacity: 0;
 
-			&:hover{
-				box-shadow: inset 30rem 0 0 0 $grey-light;
-				color: $main-dark;
-				left: 0.5rem;
+			.landscape & {
+				width: 90%;
+				margin-top: 5px;
+				max-height: 4vw;
+				font-size: 5vw;
+				box-shadow: inset -0.2rem 0 0 0 white;
+				padding: 5% 0 5% 10%;
+
+				&:hover{
+					box-shadow: inset 30rem 0 0 0 white;
+					color: $main-dark;
+					left: 0.5rem;
+				}
+			}
+
+			.portrait & {
+				width: 100%;
+				padding: 5% 0 5% 0%;
+				text-align: center;
+				max-height: 15vw;
+				font-size: 15vw;
+				line-height: 1;
+
+				&:hover{
+					background-color: white;
+					color: $main-dark;
+					transform: scale(1.1);
+				}
 			}
 
 		}
@@ -76,12 +121,12 @@
 		ul.navList{
 			margin-top: 15vh;
 			li a{
-				box-shadow: inset -0.2rem 0 0 0 $grey-light;
+				box-shadow: inset -0.2rem 0 0 0 white;
 				max-height: 3.5rem;
 				font-size: 3rem;
 
 				&:hover{
-					box-shadow: inset 30rem 0 0 0 $grey-light;
+					box-shadow: inset 30rem 0 0 0 white;
 				}
 			}
 		}

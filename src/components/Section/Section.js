@@ -10,10 +10,13 @@ class Section extends Component{
     super(props);
     this.tl = new TimelineMax({paused: true});
 		this.setCurrSection = this.props.setCurrSection.bind(this);
+    this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+    this.animateOutDelay = this.orientation === 'landscape' ? 0 : 0.25;
   }
 
   componentDidMount(){
     this.componentWillEnter();
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentDidUpdate(){
@@ -24,23 +27,39 @@ class Section extends Component{
     }
   }
 
+  componentWillUnmount(){
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+    this.animateOutDelay = this.orientation === 'landscape' ? 0 : 0.25;
+  }
+
   componentWillEnter(done) {
     this.tl.kill();
-    this.tl.add(TweenMax.to(this.section, 1, {opacity: 1, ease: Back.easeOut}));
-    this.tl.add(TweenMax.to(this.section, 1, {scale: 1, ease: Back.easeOut, onComplete: done}));
+    if (this.orientation === 'landscape') {
+      this.tl.add(TweenMax.fromTo(this.section, 0.5, {x: -window.innerWidth}, {x: 0}));
+      this.tl.add(TweenMax.to(this.section, 1, {scale: 1, ease: Power3.easeOut, onComplete: done}));
+    } else {
+      this.tl.add(TweenMax.fromTo(this.section, 0.5, {y: window.innerHeight}, {y: 0}));
+    }
     this.tl.play();
   }
   componentWillLeave(done) {
     this.tl.kill();
-    this.tl.add(TweenMax.to(this.section, 1, {scale: 0.9, ease: Back.easeOut}));
-    this.tl.add(TweenMax.to(this.section, 1, {opacity: 0, ease: Back.easeOut, onComplete: done}));
+    if (this.orientation === 'landscape') {
+      this.tl.add(TweenMax.to(this.section, 0.5, {x: window.innerWidth, ease: Power3.easeOut, delay: this.animateOutDelay / 2, onComplete: done}));
+      this.tl.add(TweenMax.to(this.section, 1, {scale: 0.9, ease: Power3.easeOut}));
+    } else {
+      this.tl.add(TweenMax.to(this.section, 0.5, {y: -window.innerHeight, ease: Power3.easeOut, delay: this.animateOutDelay / 2, onComplete: done}));
+    }
     this.tl.play();
   }
 
 	render(){
-
 		return (
-			<div className="Section " ref={item => this.section = item} id={this.props.id}>
+			<div className="Section" ref={item => this.section = item} id={this.props.id} style={{backgroundColor: this.props.bgColor}}>
         {this.props.children}
 			</div>
 		);
