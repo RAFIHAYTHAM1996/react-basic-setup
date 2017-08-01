@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: white;
   z-index: 9999;
 
   .container {
@@ -20,11 +20,12 @@
         width: 100%;
         height: 100%;
         display: block;
+        stroke: $main-medium;
       }
     }
 
     p {
-      color: #fff;
+      color: $main-medium;
       font-size: 15px;
       line-height: 120%;
       margin-top: 20px;

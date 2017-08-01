@@ -1,0 +1,221 @@
+.Project{
+	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	overflow: auto;
+
+	.desktop & {
+
+		.ProjectHeader {
+			display: none;
+			height: 7.5vw;
+			width: 100%;
+			position: fixed;
+			background-color: white;
+			z-index: 1;
+
+			.Content {
+				width: 90%;
+				height: calc(100% - 3vw);
+				margin-top: 0;
+				padding: 1.5vw 5vw;
+				font-size: 2.5vw;
+				overflow: hidden;
+
+				.BackButton {
+					animation: none;
+					transition: none;
+					background: none;
+					top: 0.75vw;
+					left: 5%;
+					height: 5vw;
+					width: 5vw;
+					overflow: hidden;
+
+					.BackgroundCircle {
+						fill: $grey-lighter;
+					}
+
+					.Line {
+						fill: none;
+						stroke: $main-dark;
+					}
+
+					.TailCircle {
+						fill: $main-medium;
+					}
+
+					.Arrow {
+						fill: $main-medium;
+					}
+				}
+
+				.Title {
+					@extend .ExoBlack;
+					color: $main-dark;
+					width: 100%;
+					margin-bottom: 0;
+					margin-top: 0;
+					text-align: right;
+					line-height: 1;
+					font-size: 100%;
+				}
+
+				.Client {
+					color: $grey-medium;
+					width: 100%;
+					text-align: right;
+					font-size: 60%;
+				}
+			}
+		}
+
+		.HeadImage {
+			width: 100%;
+			height: 100%;
+
+			img {
+				width: 100%;
+			}
+		}
+
+		.Content {
+			@extend .Lato-Medium;
+			width: 90%;
+			padding: 0 5%;
+			margin: auto;
+			// margin-top: 7.5vw;
+			text-align: center;
+			overflow-x: hidden;
+			overflow-y: auto;
+
+			.Copy {
+				@extend .Lato-Light;
+				color: $grey-medium;
+				margin: auto;
+				margin-top: 8vh;
+				margin-bottom: 8vh;
+				width: 60%;
+				font-size: 2vw;
+			}
+
+			.Description {
+
+			}
+
+			img {
+				width: 100%;
+			}
+
+		}
+	}
+
+	.phone & {
+
+		.ProjectHeader {
+			height: 30vw;
+			width: 100%;
+			position: fixed;
+			background-color: white;
+			z-index: 1;
+
+			.Content {
+				width: 90%;
+				height: calc(100% - 8vw);
+				padding-top: 8vw;
+				padding-left: 5vw;
+				padding-right: 5vw;
+				font-size: 8vw;
+
+				.BackButton {
+					animation: none;
+					transition: none;
+					background: none;
+					top: 2.5vw;
+					left: 2.5vw;
+					height: 20vw;
+					width: 20vw;
+					stroke-width: 1px;
+					stroke-dashoffset: 310;
+					stroke-dasharray: 310;
+					stroke: $main-dark;
+
+					.BackgroundCircle {
+						stroke-width: 0;
+						fill: $grey-lighter;
+					}
+
+					.Line {
+						fill: none;
+					}
+
+					.TailCircle {
+						fill: $main-dark;
+					}
+
+					.Arrow {
+						fill: $main-dark;
+					}
+				}
+
+				.Title {
+					@extend .ExoBlack;
+					color: $main-dark;
+					width: 100%;
+					margin-bottom: 0;
+					margin-top: 0;
+					text-align: right;
+					line-height: 1;
+					font-size: 100%;
+				}
+
+				.Client {
+					color: $grey-medium;
+					width: 100%;
+					text-align: right;
+					font-size: 60%;
+				}
+			}
+		}
+
+		.Content {
+			@extend .Lato-Medium;
+			width: 90%;
+			height: 100vh;
+			margin: auto;
+			text-align: center;
+			overflow: visible;
+			padding-top: 30vw;
+
+			.HeadImage {
+				height: 30vh;
+				width: 100%;
+				margin-left: -5vw;
+
+				img {
+					width: auto;
+					max-height: 100%;
+				}
+			}
+
+			.Copy {
+				@extend .Lato-Light;
+				color: $grey-medium;
+				margin-top: 8vh;
+				margin-bottom: 8vh;
+				font-size: 5vw;
+			}
+
+			.Description {
+
+			}
+
+			img {
+				width: 100%;
+			}
+
+		}
+	}
+
+}

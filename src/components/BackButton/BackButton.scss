@@ -1,9 +1,9 @@
 .BackButton{
   display: block;
   position: fixed;
-  top: 40vh;
-  height: 10vh;
-  width: 10vh;
+  top: 45vh;
+  height: 5vh;
+  width: 5vh;
   background-color: $grey-medium;
   z-index: 1;
   padding: 1vh;
@@ -30,8 +30,8 @@
   }
 
   svg{
-    height: 10vh;
-    width: 10vh;
+    height: 5vh;
+    width: 5vh;
     margin-left: -0.5vh;
     transition: all 0.3s ease-in-out;
     animation: LeftButtonInAnimation 1.5s none 0s 1 alternate;

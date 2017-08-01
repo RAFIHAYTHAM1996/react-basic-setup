@@ -14,7 +14,7 @@ class MenuButton extends Component{
     this.onMenuToggle = this.props.onMenuToggle.bind(this);
     this.animateInOut = this.animateInOut.bind(this);
     this.tl = new TimelineMax({paused: true});
-    this.OnAnimationDelay = 2;
+    this.OnAnimationDelay = 1;
     this.time = 0.3;
     this.GetCurrentSectionName = this.GetCurrentSectionName.bind(this);
   }

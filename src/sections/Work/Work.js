@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import Section from '../../components/Section/Section';
 import Gallery from '../../components/Gallery/Gallery';
+import Project from '../../components/Project/Project';
 import keys from '../../reducers/keys.js';
 import { connect } from 'react-redux';
 import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
 import BackButton from '../../components/BackButton/BackButton';
 import Image from '../../components/Image/Image';
+import projectsJSON from '../../../static/json/projects.json';
+import config from '../../../config.json';
 
 class Work extends Component{
 
@@ -19,37 +23,53 @@ class Work extends Component{
 	    playing: [],
 	    volume: 0.8,
   	}
+		this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+		this.src = config.defaults.ASSET_PATH + "images/projects/";
   }
 
   componentDidMount(){
+		TweenMax.to(document.getElementsByClassName("Header")[0], 0, {y: -window.innerWidth * 0.3});
+		window.addEventListener('resize', this.handleResize);
+		this.animateIn();
   }
 
   componentDidUpdate(){
-
   }
+
+	handleResize = () => {
+		this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+	}
+
+	animateIn = (done) => {
+		var tl = new TimelineMax({paused: true, delay: 1});
+		tl.add(TweenMax.to(this.OptionsContainer.children, 0, {y: window.innerHeight * 0.3, opacity: 0}));
+		tl.add(TweenMax.staggerTo(this.OptionsContainer.children, 1, {y: 0, ease: Power3.easeInOut, opacity: 1, onComplete: done}, 0.2));
+		tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Back.easeOut, delay: -0.5});
+		tl.play();
+	}
 
 	CreateOptionContainerOutAnim(callback){
 		var elements = [...document.getElementsByClassName("OptionCard")],
 				OptionsContainer = document.getElementById("OptionsContainer"),
 				timeline = new TimelineMax({paused: true});
 
-		timeline.to(elements,  0.5, {opacity: 0, ease: Power3.easeInOut});
-		timeline.to(elements,  0.2, {margin: "-15vw", ease: Back.easeIn, delay: -0.3});
-		timeline.to(OptionsContainer, 0.3, {height: "100vh", width: "100vw", top: 0, left: 0, ease: Back.easeIn, onComplete: callback});
+		timeline.to(document.getElementsByClassName("Header")[0], 0, {y: 0});
+
+		// if (this.orientation === 'landscape') {
+		// 	timeline.to(elements,  0.5, {opacity: 0, ease: Power3.easeInOut});
+		// 	timeline.to(elements,  0.2, {margin: "-15vw", ease: Back.easeIn, delay: -0.3});
+		// } else {
+			timeline.staggerTo(this.OptionsContainer.children, 1, {y: window.innerHeight * 0.3, opacity: 0, ease: Back.easeIn}, 0.2);
+		// }
+		timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Back.easeIn, delay: -0.5});
+		timeline.to(OptionsContainer, 0.3, {height: "100%", width: "100%", top: 0, left: 0, ease: Back.easeIn, onComplete: callback});
 		return timeline;
 	}
 
-	showCategory(category){
+	openProject(projectName){
 		this.CreateOptionContainerOutAnim(() => {
-			this.setState({ready: true, category: category});
+			this.context.router.push("work/" + projectName);
 		}).play();
-	}
-
-	closeGallery(){
-		var callback = ()=>{
-			this.setState({ready: false, category: ""});
-		}
-		this.gallery.close(callback.bind(this));
 	}
 
 	render(){
@@ -58,38 +78,25 @@ class Work extends Component{
 	  });
 
 		return(
-			<Section id="Work" bgColor="">
-				{
-					this.state.ready ? (
-						<div>
-							<Gallery category={this.state.category} ref={ el => this.gallery = el} />,
-							<BackButton backAction={this.closeGallery.bind(this)}/>
-						</div>
-					) : (
-						<div id="OptionsContainer">
-							<div className="OptionCard" onClick={this.showCategory.bind(this, "images")}>
-								<div className="title">
-									Photography
+			<Section id="Work">
+				<div className="Content">
+					<div id="OptionsContainer" ref={el => this.OptionsContainer = el}>
+					{
+						projectsJSON.projects.map( (function(item, index){
+							return (
+								<div className="OptionCard" onClick={this.openProject.bind(this, item.route)} key={index}>
+									<div className="title">
+										{item.title}
+									</div>
+									<img src={this.src + item.thumbImage} alt={item.title + " Thumbnail"} />
+									<div className="overlay"></div>
 								</div>
-								<img src="../../../assets/images/work/photography.jpg" alt="Photography" />
-							</div>
-							<div className="OptionCard" onClick={this.showCategory.bind(this, "videos")}>
-								<div className="title">
-									<p className="top">Videography</p>
-								</div>
-								<img src="../../../assets/images/work/videography.jpg" alt="Videography" />
-							</div>
-							<div className="OptionCard">
-								<div className="title">
-									<p className="top">DSC_0776</p>
-								</div>
-								<img src="../../../assets/images/work/DSC_0776.jpg" alt="Videography" />
-							</div>
-
-						</div>
-					)
-				}
-				{this.props.children}
+							)
+						}).bind(this))
+					}
+					</div>
+					{this.props.children}
+				</div>
 			</Section>
 		);
 	}
@@ -101,6 +108,18 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+
+	}
+}
+
+Work.contextTypes = {
+  router: React.PropTypes.object,
+  store: React.PropTypes.object
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+	mapDispatchToProps
 )(Work);

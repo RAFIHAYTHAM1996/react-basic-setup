@@ -38,8 +38,8 @@ class Menu extends Component{
   }
 
   createTimeline = (done) => {
-    var menuWidth = this.orientation === 'landscape' ? (window.innerWidth * 0.25) > 300 ? (window.innerWidth * 0.25) : 300 : window.innerWidth;
-    var menuHeight = this.orientation === 'landscape' ? window.innerHeight * 0.86 : window.innerHeight;
+    // var menuWidth = this.orientation === 'landscape' ? (window.innerWidth * 0.25) > 300 ? (window.innerWidth * 0.25) : 300 : window.innerWidth;
+    // var menuHeight = this.orientation === 'landscape' ? window.innerHeight * 0.86 : window.innerHeight;
     var sectionCover = document.getElementById("SectionCover");
     var front = document.querySelector(".CloseButton .front");
     var back = document.querySelector(".CloseButton .back");
@@ -52,26 +52,21 @@ class Menu extends Component{
     this.tl = new TimelineMax({paused: true});
     this.tl.add(TweenMax.to(menu, 0, {visibility: "visible", delay: 0.3}));
 
-    this.tl.add(TweenMax.to(front, 0, {scaleY: "0.3", ease: Power3.easeInOut}));
-    this.tl.add(TweenMax.to(back, 0, {scaleY: "0.3", ease: Power3.easeInOut}));
+    // this.tl.add(TweenMax.to(front, 0, {scaleY: "0.3", ease: Power3.easeInOut}));
+    // this.tl.add(TweenMax.to(back, 0, {scaleY: "0.3", ease: Power3.easeInOut}));
 
-    if (this.orientation === 'landscape') {
-      this.tl.add(TweenMax.to(sectionCover, 0.5 * timeScale, {left: "0px", opacity: 0.3, ease: Power3.easeInOut}));
-      this.tl.add(TweenMax.to(menu, 0.2 * timeScale, {width: menuWidth, ease: Power3.easeInOut, delay: -0.2 * timeScale}));
-      this.tl.add(TweenMax.to(menu, 0.4 * timeScale, {height: menuHeight, ease: Power3.easeInOut}));
-    } else {
-      this.tl.add(TweenMax.to(sectionCover, 0.5 * timeScale, {top: "0px", opacity: 0.3, ease: Power3.easeInOut}));
-      this.tl.add(TweenMax.to(menu, 0.4 * timeScale, {height: menuHeight, ease: Power3.easeInOut, delay: -0.2 * timeScale}));
-    }
+    this.tl.add(TweenMax.to(sectionCover, 0.5 * timeScale, {left: "0px", opacity: 0.3, ease: Power3.easeInOut}));
+    this.tl.add(TweenMax.to(menu, 0.2 * timeScale, {width: "35vw", ease: Power3.easeInOut, delay: -0.2 * timeScale}));
+    this.tl.add(TweenMax.to(menu, 0.4 * timeScale, {height: "86%", ease: Power3.easeInOut}));
 
     // this.tl.add(TweenMax.staggerTo("ul.navList li a", 0.2 * timeScale, {height: 'auto', scale: 1, paddingTop: "5%", paddingBottom: "5%", delay: -0.1 * timeScale, ease: Back.easeOut}, 0.05));
     // this.tl.add(TweenMax.staggerTo("ul.navList li a", 1 * timeScale, {scaleY: 1, ease: Back.easeOut}, 0.05));
     this.tl.add(TweenMax.staggerTo("ul.navList li a", 0.5 * timeScale, {scaleY: 1, opacity: 1, ease: Back.easeOut}, 0.1));
 
-    this.tl.add(TweenMax.to([back, front], 0.5 * timeScale, {scaleX: "1", ease: Power3.easeInOut}));
-
-    this.tl.add(TweenMax.to(front, xButtonDuration, {transformOrigin:"center",rotation:45, ease: Back.easeOut, delay: -xButtonDuration*2}));
-    this.tl.add(TweenMax.to(back, xButtonDuration, {transformOrigin:"center",rotation:-45, ease: Back.easeOut, delay: -xButtonDuration, onComplete: done}));
+    // this.tl.add(TweenMax.to([back, front], 0.5 * timeScale, {scaleX: "1", ease: Power3.easeInOut}));
+    //
+    // this.tl.add(TweenMax.to(front, xButtonDuration, {transformOrigin:"center",rotation:45, ease: Back.easeOut, delay: -xButtonDuration*2}));
+    // this.tl.add(TweenMax.to(back, xButtonDuration, {transformOrigin:"center",rotation:-45, ease: Back.easeOut, delay: -xButtonDuration, onComplete: done}));
 
     return this.tl;
   }
@@ -98,7 +93,13 @@ class Menu extends Component{
 		return (
 			<div className="Menu" id="Menu" style={{background: this.props.bgColor}}>
         <div className="CloseButton" id="CloseButton" onClick={this.onMenuToggle}>
-          <svg dangerouslySetInnerHTML={{__html: bar}}></svg>
+          {
+            // <svg dangerouslySetInnerHTML={{__html: bar}}></svg>
+          }
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">
+            <line x1="2.5" y1="2.5" x2="7.5" y2="7.5"/>
+            <line x1="7.5" y1="2.5" x2="2.5" y2="7.5"/>
+          </svg>
         </div>
         <ul className="navList">
           <li>

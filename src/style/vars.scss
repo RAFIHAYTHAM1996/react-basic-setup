@@ -8,10 +8,10 @@
 // $main-medium: #8badb3;
 // $main-dark: #657e82;
 
-$main-light: #bf9baa;
-$main-medium: #a68693;
-$main-dark: #806771;
-$main-darker: #66535b;
+$main-light: #b6ccad;
+$main-medium: #94a68d;
+$main-dark: #72806c;
+$main-darker: #5b6657;
 
 
 $grey-lighter: #EEE;
@@ -25,7 +25,7 @@ $menu-link-light: $main-light;
 $menu-link-dark: $main-dark;
 $menu-link-darker: darken($main-darker, 1);
 
-$background: $main-dark;
+$background: white;
 
 $ASSET_PATH: './assets/' !default;
 $images: '#{$ASSET_PATH}images/';

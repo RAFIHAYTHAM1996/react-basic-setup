@@ -1,6 +1,6 @@
 #About{
 
-  background-color: $background;
+  background-color: $grey-lighter;
   // background: url("./assets/images/background1.jpg") no-repeat;
   // background-size: cover;
   display: flex;
@@ -16,14 +16,14 @@
 
     h1, p {
       @extend .ExoLight;
-      color: $grey-lighter;
+      color: $grey-light;
     }
 
-    .landscape & {
+    .desktop & {
       width: 40%;
     }
 
-    .portrait & {
+    .phone & {
       width: 80%;
     }
 

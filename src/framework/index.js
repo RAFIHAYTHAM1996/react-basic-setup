@@ -13,7 +13,9 @@ import Home from '../sections/Home/Home';
 import Work from '../sections/Work/Work';
 import Contact from '../sections/Contact/Contact';
 import About from '../sections/About/About';
-import UnderConstruction from '../sections/UnderConstruction/UnderConstruction';
+import Project from '../components/Project/Project';
+
+import projectsJSON from '../../static/json/projects.json';
 
 const history = syncHistoryWithStore(useRouterHistory(createBrowserHistory)({ basename: process.env.BASENAME }), store);
 
@@ -37,7 +39,16 @@ export default function() {
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
           <Route path="home" component={Home}/>
-          <Route path="work" component={Work}/>
+          <Route path="work">
+            <IndexRoute component={Work}/>
+            {
+              projectsJSON.projects.map(function(item, index) {
+                return (
+                  <Route path={item.route} key={index} component={Project}/>
+                )
+              })
+            }
+          </Route>
           <Route path="contact" component={Contact}/>
           <Route path="about" component={About}/>
           {TestRoutes && <Route path="/test" component={Test}>{TestRoutes}</Route>}

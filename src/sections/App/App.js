@@ -12,13 +12,15 @@ import MobileMenu from '../../components/MobileMenu/MobileMenu';
 import MenuButton from '../../components/MenuButton/MenuButton';
 import RG from '../../../raw-assets/svg/RG.svg'
 import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
+import Image from '../../components/Image/Image';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       width: 960,
-      height: 570
+      height: 570,
+      loggedIn: false
     };
     this.tl = new TimelineMax({paused: true});
     this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
@@ -52,14 +54,20 @@ class App extends React.Component {
     this.tl.stop();
     this.tl = new TimelineMax({paused: true});
 
-    this.tl.add(TweenMax.to(this.circle, 0, {strokeDashoffset: 50, fillOpacity: 0}));
-    this.tl.add(TweenMax.to(".Logo", 0, {strokeDashoffset: 120}));
+    this.tl.add(TweenMax.to(this.circle, 0, {strokeDashoffset: 290, fillOpacity: 0}));
+    this.tl.add(TweenMax.to(".Logo", 0, {strokeDashoffset: 230}));
+    this.tl.to(".Header", 0, {y: -window.innerWidth * 0.3});
 
-    this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {strokeDashoffset: 0, strokeDasharray: 0, ease: Power3.easeOut, delay: 1 * this.timeScale}));
+    this.tl.to(".Header", 1 * this.timeScale, {y: 0, ease: Power3.easeOut, delay: 3 * this.timeScale});
+    this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut, delay: -1 * this.timeScale}));
     this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {fillOpacity: 1, ease: Power3.easeOut}));
     this.tl.add(TweenMax.to(".Logo", 2 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));
 
     return this.tl;
+  }
+
+  componentDidUpdate = () => {
+
   }
 
   getContent(isTestRoute) {
@@ -85,23 +93,47 @@ class App extends React.Component {
     this.props.children.componentWillLeave(() => {this.context.router.push(this.props.section.nextSection)});
   }
 
+  checkPassword = () => {
+    if (this.PasswordInput.value === '6229') {
+      var tl = new TimelineMax({paused: true});
+      tl.add(TweenMax.to(this.PasswordProtection, 1, {y: - window.innerHeight * 2, ease: Power3.easeIn}));
+      tl.add(TweenMax.to(this.PasswordProtection, 0.1, {display: 'none'}));
+      tl.play();
+    } else {
+      this.description.innerHTML = "INCORRECT PASSWORD";
+    }
+  }
+
   render() {
     const isTestRoute = (location.pathname.split('/')[1] === 'test');
 
     return (
       <div id="app">
+        <div id="PasswordProtection" ref={el => this.PasswordProtection = el} >
+          <div id="LandingImage">
+            <Image src="./assets/images/EmoRoad.jpg"/>
+          </div>
+          <h1 className="description" ref={el => this.description = el} >SITE UNDER MAINTENANCE</h1>
+          <input type="number" placeholder="PASSWORD" ref={el => this.PasswordInput = el} />
+          <div className="ENTER" onClick={this.checkPassword}>
+  					ENTER
+  				</div>
+        </div>
         <TransitionGroup id="content" component="div" transitionMode="out-in">
           {this.getContent(isTestRoute)}
-          <MenuButton/>
+          <div className="Header" ref={el => this.HEADER = el} >
+            <MenuButton/>
+
+            <svg viewBox="0 0 100 100" className="LogoBackground">
+               <circle cx="50" cy="50" r="45" ref={el => this.circle = el}/>
+            </svg>
+            <svg dangerouslySetInnerHTML={{__html: RG}} className="Logo" ref={el => this.circleText = el} >
+            </svg>
+          </div>
+
           {
             detect.device === "desktop" ? <Menu parent={this}/> : <MobileMenu parent={this}/>
           }
-
-          <svg viewBox="0 0 100 100" className="LogoBackground">
-             <circle cx="50" cy="50" r="45" ref={el => this.circle = el}/>
-          </svg>
-          <svg dangerouslySetInnerHTML={{__html: RG}} className="Logo" ref={el => this.circleText = el} >
-          </svg>
 
           <div className="SectionCover" id="SectionCover"/>
         </TransitionGroup>
@@ -117,7 +149,7 @@ const mapStateToProps = (state, ownProps) => {
     progress: state.progress,
     ready: state.ready,
     assets: state.assets,
-    section: section
+    section: state.section
   }
 };
 

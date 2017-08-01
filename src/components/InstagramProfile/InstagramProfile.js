@@ -10,11 +10,17 @@ class InstagramProfile extends Component{
 
 	componentDidMount(){
 		this.props.pullFromInstagram({access_token: "201262345.3af8d79.74976cd65f5749128754a9208c3c7d97"});
+		this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+		window.addEventListener('resize', this.handleResize);
+	}
+
+	handleResize = () => {
+		this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
 	}
 
 	render(){
 		return (
-			<div id={this.props.id} className="InstagramProfile">
+			<div id={this.props.id} className={"InstagramProfile " + this.orientation}>
 				<img src={this.props.InstagramProfileData.profile_picture} id="profilePicture"/>
 				<h1>Instagram</h1>
 				<hr />

@@ -1,0 +1,60 @@
+{
+	"projects":[
+		{
+			"route": "xmen",
+			"title": "THE GIFTED",
+			"client": "Fox Entertainment Group",
+			"description": "THE GIFTED TV Series",
+			"copy": "The Gifted is an upcoming American television series created for Fox by Matt Nix, based on Marvel Comics' X-Men properties. It is connected to the X-Men film series, the second television series to be so.",
+			"headImage": "xmen.jpg",
+			"thumbImage": "xmen-thumb.png",
+			"images":
+				[
+					"xmen.jpg",
+				],
+			"url": "http://www.sentinelservices.com",
+		},
+		{
+			"route": "un-fb",
+			"title": "UN",
+			"client": "UN",
+			"description": "Facebook Camera Effect",
+			"copy": "The Gifted is an upcoming American television series created for Fox by Matt Nix, based on Marvel Comics' X-Men properties. It is connected to the X-Men film series, the second television series to be so.",
+			"headImage": "un-thumb.png",
+			"thumbImage": "un-thumb.png",
+			"images":
+				[
+					"un-thumb.png",
+				],
+			"url": "http://www.sentinelservices.com",
+		},
+		{
+			"route": "xmen",
+			"title": "THE GIFTED",
+			"client": "Fox Entertainment Group",
+			"description": "THE GIFTED TV Series",
+			"copy": "The Gifted is an upcoming American television series created for Fox by Matt Nix, based on Marvel Comics' X-Men properties. It is connected to the X-Men film series, the second television series to be so.",
+			"headImage": "xmen.jpg",
+			"thumbImage": "xmen-thumb.png",
+			"images":
+				[
+					"xmen.jpg",
+				],
+			"url": "http://www.sentinelservices.com",
+		},
+		{
+			"route": "netflix",
+			"title": "",
+			"client": "Netflix",
+			"description": "WebApp redesign",
+			"copy": "The Gifted is an upcoming American television series created for Fox by Matt Nix, based on Marvel Comics' X-Men properties. It is connected to the X-Men film series, the second television series to be so.",
+			"headImage": "netflix-thumb.png",
+			"thumbImage": "netflix-thumb.png",
+			"images":
+				[
+					"netflix-thumb.png",
+				],
+			"url": "http://www.netflix.com",
+		},
+	]
+}

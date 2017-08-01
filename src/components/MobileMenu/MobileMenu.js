@@ -40,8 +40,8 @@ class MobileMenu extends Component{
   }
 
   createTimeline = (done) => {
-    var menuWidth = this.orientation === 'landscape' ? (window.innerWidth * 0.25) > 300 ? (window.innerWidth * 0.25) : 300 : window.innerWidth;
-    var menuHeight = this.orientation === 'landscape' ? window.innerHeight * 0.86 : window.innerHeight * 1.5;
+    // var menuWidth = this.orientation === 'landscape' ? (window.innerWidth * 0.25) > 300 ? (window.innerWidth * 0.25) : 300 : window.innerWidth;
+    // var menuHeight = this.orientation === 'landscape' ? window.innerHeight * 0.86 : window.innerHeight * 1.5;
     var sectionCover = document.getElementById("SectionCover");
     var front = document.querySelector(".CloseButton .front");
     var back = document.querySelector(".CloseButton .back");
@@ -58,20 +58,21 @@ class MobileMenu extends Component{
     this.tl = new TimelineMax({paused: true});
     this.tl.add(TweenMax.to([SVGs, LinkTexts], 0, {fillOpacity: 0}));
     this.tl.add(TweenMax.to(this.circle, 0, {strokeDashoffset: 50, fillOpacity: 0}));
-    this.tl.add(TweenMax.to(this.circleText, 0, {strokeDashoffset: 120, stroke: "#eee", fillOpacity: 0}));
+    this.tl.add(TweenMax.to(this.CenterLogo, 0, {strokeDashoffset: 230, stroke: "#eee", fillOpacity: 0}));
     this.tl.add(TweenMax.to(this.CloseButtonCircle, 0, {scale: 0.5, fillOpacity: 0}));
+    this.tl.add(TweenMax.to(this.LinksContainer, 0, {rotationZ: -180, ease: Sine.easeOut}));
     this.tl.add(TweenMax.to([this.CloseButtonFrontLine, this.CloseButtonBackLine], 0, {scaleX: 0.01, scaleY: 0.5}));
 
     this.tl.add(TweenMax.to(this.MobileMenu, 0, {visibility: "visible"}));
 
     this.tl.add(TweenMax.to(sectionCover, 1 * this.timeScale, {top: "0px", opacity: 0.3, ease: Power3.easeInOut, delay: 0.3 * this.timeScale}));
-    this.tl.add(TweenMax.to(this.MobileMenu, 0.4 * this.timeScale, {height: menuHeight, ease: Power3.easeInOut, delay: -0.4 * this.timeScale}));
+    this.tl.add(TweenMax.to(this.MobileMenu, 0.4 * this.timeScale, {height: "100%", ease: Power3.easeInOut, delay: -0.4 * this.timeScale}));
 
-    this.tl.add(TweenMax.to(this.circleText, 2 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));
+    this.tl.add(TweenMax.to(this.CenterLogo, 2 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));
     this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));
     this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {fillOpacity: 1, ease: Power3.easeOut}));
-    this.tl.add(TweenMax.to(this.circleText, 1 * this.timeScale, {stroke: "#444", ease: Power3.easeOut, delay: -1 * this.timeScale}));
-    this.tl.add(TweenMax.to(this.LinksContainer, 2 * this.timeScale, {rotationZ: 360, ease: Sine.easeOut}));
+    this.tl.add(TweenMax.to(this.CenterLogo, 1 * this.timeScale, {stroke: "#444", ease: Power3.easeOut, delay: -0.5 * this.timeScale}));
+    this.tl.add(TweenMax.to(this.LinksContainer, 2 * this.timeScale, {rotationZ: 0, ease: Sine.easeOut}));
     this.tl.add(TweenMax.to(SVGs, 2 * this.timeScale, {fillOpacity: 1, delay: -2 * this.timeScale}));
     this.tl.add(TweenMax.to(LinkTexts, 2 * this.timeScale, {fillOpacity: 1}));
 
@@ -128,7 +129,7 @@ class MobileMenu extends Component{
           </g>
         </svg>
 
-        <svg dangerouslySetInnerHTML={{__html: RG}} className="CenterCircleText"  ref={el => this.circleText = el}>
+        <svg dangerouslySetInnerHTML={{__html: RG}} className="CenterLogo"  ref={el => this.CenterLogo = el}>
         </svg>
 
 			</div>

@@ -3,7 +3,7 @@
 	position: absolute;
 	background-color: $menu-background;
 	height: 0;
-	width: 100vw;
+	width: 100%;
 	z-index: 10;
 	top: 0;
 	left: 0;
@@ -20,7 +20,7 @@
 			top: 5vw;
 			fill: $menu-link-dark;
 
-			.portrait & {
+			.phone & {
 				width:7vh;
 				max-height: 7vh;
 			}
@@ -75,7 +75,7 @@
 		}
 	}
 
-	.CenterCircleText {
+	.CenterLogo {
 		position: absolute;
 		top: calc(50vh - 7.5vw);
 		left: 42.5vw;
@@ -84,7 +84,12 @@
 		width: 15vw;
 
 		stroke-width: 2;
-		stroke: $grey-medium;
-		stroke-dasharray: 120;
+		stroke: $main-darker;
+		stroke-dasharray: 230;
+
+		.circle-small {
+			fill: $main-darker;
+			fill-opacity: 1;
+		}
 	}
 }

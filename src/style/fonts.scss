@@ -37,6 +37,17 @@ $fonts: '#{$ASSET_PATH}fonts/';
  * © 2017 MyFonts Inc
 */
 @font-face {
+  font-family: 'Lato-Hairline';
+  src: url($fonts + 'Lato/Lato-Hairline.ttf'),
+  url($fonts + 'Lato-Hairline.ttf') format('truetype');
+  font-style: normal;
+}
+
+.Lato-Hairline{
+  font-family: 'Lato-Hairline';
+}
+
+@font-face {
   font-family: 'Lato-Light';
   src: url($fonts + 'Lato/Lato-Light.ttf'),
   url($fonts + 'Lato-Light.ttf') format('truetype');

@@ -85,7 +85,7 @@ class Gallery extends Component{
 		var timeline = new TimelineMax({paused: true});
 		if(parseInt(EnlargedImageContainer.style.left) === 0){
 			timeline.add(TweenMax.to(EnlargedImage, 1, {height: "80vh", left: "10vw", top: "10vh", ease: Power3.easeInOut}));
-			timeline.add(TweenMax.to(EnlargedImageContainer, 1, {opacity: 0, left: "-100vw", ease: Back.easeOut}));
+			timeline.add(TweenMax.to(EnlargedImageContainer, 1, {opacity: 0, left: "-100%", ease: Back.easeOut}));
 			timeline.add(TweenMax.to(EnlargedImageContainer, 0, {display: "none", delay: 0.5, ease: Power3.easeInOut}));
 			timeline.add(TweenMax.staggerTo(elements, 0.3, {opacity: 1, ease: Power3.easeInOut}, 0.1));
 			timeline.add(TweenMax.to(Work, 0, {overflowY: "scroll", ease: Power3.easeInOut}));

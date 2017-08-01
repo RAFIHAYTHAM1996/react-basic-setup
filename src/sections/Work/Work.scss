@@ -1,130 +1,138 @@
 #Work{
   overflow-y: auto;
-  transition: all 1s easeInOut;
   // background: url("./assets/images/gallery/DSC_1001.jpg") no-repeat center;
   background-size: cover;
-  background-color: white;
+  background-color: $grey-lighter;
 
+  .phone &{
+    margin-top: 20vw;
+  }
 
-  .portrait & {
-    #OptionsContainer {
+  .desktop & {
+    margin-top: 5vw;
+  }
+
+  #OptionsContainer {
+    overflow: hidden;
+
+    .phone &{
       width: 100%;
-      overflow: hidden;
-      margin-top: 30vw;
     }
 
-    .OptionCard {
+    .desktop & {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .OptionCard {
+    overflow: hidden;
+    cursor: pointer;
+
+    .phone &{
       width: 100%;
       height: 30vh;
-      overflow: hidden;
+      margin-bottom: 0.5vh;
+    }
 
-      img{
-        width: 100%;
-        opacity: 1;
-        transition: all 0.3s ease-in-out;
-        filter: blur(0.3vw) saturate(0);
-        transform: scale(1.05);
+    .desktop & {
+      display: inline-block;
+      width: 32.33%;
+      height: 22.33vw;
+      margin: 0.5% 0.5%;
+
+      &:hover{
+        // & .title{
+        //   animation: OptionCardHoverAnim 0.2s ease-in-out 0s 1 alternate;
+        //
+        //   @keyframes OptionCardHoverAnim {
+        //     0% {transform: translateY(0); opacity: 1;}
+        //     50% {transform: translateY(10vh); opacity: 0;}
+        //     51% {transform: translateY(-10vh); opacity: 0;}
+        //     100% {transform: translateY(0); opacity: 1;}
+        //   }
+        // }
       }
+    }
 
-      .title{
+    &:hover {
+      .overlay {
+        &::before {
+          background-color: rgba(black, 0.75);
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+      }
+      .title {
+        opacity: 1;
+      }
+      img {
+        filter: saturate(0);
+      }
+    }
+
+    .overlay {
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      // background-color: rgba(darken($main-medium, 10), 0.85);
+      background-color: white;
+      transition: all 0.25s cubic-bezier(0.7, 0, 1, 1);
+      z-index: -1;
+
+      &::before {
+        content: " ";
+        display: block;
+        height: 90%;
+        width: 90%;
+        top: 5%;
+        left: 5%;
         position: absolute;
-        color: white;
+        transition: all 0.25s cubic-bezier(0.7, 0, 1, 1);
+      }
+    }
+
+    img{
+      max-width: 50%;
+      max-height: 50%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      opacity: 1;
+      transition: all 0.3s ease-in-out;
+      // filter: blur(0.3vw) saturate(0);
+      // transform: scale(1.05);
+    }
+
+    .title{
+      @extend .Lato-Light;
+      position: absolute;
+      color: white;
+      text-align: center;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.7, 0, 1, 1);
+      z-index: 1;
+
+      .phone & {
         height: 30vh;
         width: 100%;
-        font-family: "Poiret One", sans-serif;
         font-size: 7vh;
         line-height: 30vh;
-        text-align: center;
-        opacity: 1;
-        transition: all 0.3s ease;
-        z-index: 1;
       }
-    }
-  }
-
-  .landscape & {
-    #OptionsContainer{
-      position: absolute;
-      display:block;
-      width: 80vw;
-      height: 80vh;
-      left: 10vw;
-      top: 10vh;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      align-content: center;
-      transition: all 0.2s easeInOut;
-      animation: OptionsContainerInAnim 0.5s ease-out 0s 1 alternate;
-
-      @keyframes OptionsContainerInAnim{
-        0% {opacity: 0;}
-        100% {opacity: 1;}
-      }
-    }
-
-    .OptionCard{
-      display: block;
-      width: 60vh;
-      height: calc(58vh * 0.666666);
-      transition: all 0.3s ease-in-out;
-      transform: scale(1);
-      overflow: hidden;
-      cursor: pointer;
-      animation: OptionCardInAnim 0.5s cubic-bezier(0, 0, 0.7, 1.5) 0s 1 alternate;
-      margin: 2vw;
-
-      @keyframes OptionCardInAnim{
-        0% {margin: -15vw;}
-        100% {margin: 2vw;}
-      }
-
-      img{
-        height: 100%;
-        min-width: 100%;
-        opacity: 1;
-        transition: all 0.3s ease-in-out;
-        filter: blur(0.1vh) saturate(0);
-      }
-
-      .title{
-        position: absolute;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        height: 40vh;
-        width: 30vw;
-        font-family: "Poiret One", sans-serif;
-        font-size: 7vh;
-        text-align: center;
-        opacity: 1;
-        transition: all 0.3s ease;
-        z-index: 1;
-      }
-    }
-  }
-
-  .desktop &{
-    .OptionCard{
-      &:hover{
-        img{
-          filter: blur(0) saturate(1);
-        }
-
-        & .title{
-          animation: OptionCardHoverAnim 0.2s ease-in-out 0s 1 alternate;
-
-          @keyframes OptionCardHoverAnim {
-            0% {transform: translateY(0); opacity: 1;}
-            50% {transform: translateY(10vh); opacity: 0;}
-            51% {transform: translateY(-10vh); opacity: 0;}
-            100% {transform: translateY(0); opacity: 1;}
-          }
-        }
+      .desktop & {
+        height: 22.33vw;
+        width: 100%;
+        font-size: 4vw;
+        line-height: 22.33vw;
       }
     }
   }

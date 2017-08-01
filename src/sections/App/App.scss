@@ -1,10 +1,172 @@
 #app {
   height: 100%;
+  overflow: hidden;
+
+  .Header {
+    background-color: white;
+    top: 0;
+    position: absolute;
+
+    .phone & {
+      height: 20vw;
+      width: 100%;
+    }
+
+    .desktop & {
+      height: 5vw;
+      width: 100%;
+    }
+  }
+
+
+  #PasswordProtection {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+
+    .description {
+      @extend .Lato-Light;
+      margin: auto;
+      text-align: center;
+      color: $grey-medium;
+
+      .phone & {
+        width: 80%;
+        font-size: 5vw;
+        margin-top: calc(50vh - 15vw);
+        margin-bottom: 5vw;
+      }
+
+      .desktop & {
+        font-size: 2vw;
+        margin-top: calc(50vh - 10vw);
+        margin-bottom: 1vw;
+      }
+    }
+
+    input {
+      border-radius: 10vw;
+      border: none;
+      opacity: 0.5;
+
+      .phone & {
+        height: 15vw;
+        width: 70vw;
+        margin-left: 10vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
+      }
+
+      .desktop & {
+        height: 4vw;
+        width: 30vw;
+        margin-left: 32.5vw;
+        padding-left: 2.5vw;
+        padding-right: 2.5vw;
+      }
+
+      &:focus {
+        border: none;
+
+      }
+    }
+
+    .ENTER {
+      display: block;
+      @extend .Lato-Medium;
+      position: absolute;
+      text-align: center;
+      color: $main-light;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      transform-origin: left;
+      z-index: 100000;
+      background: rgba($main-darker, .2);
+
+      .phone & {
+        height: 15vw;
+        width: 40vw;
+        left: 30vw;
+        margin-top: 30vw;
+        border-radius: 10vw;
+        font-size: 5vw;
+        line-height: 15vw;
+        border: 1px solid $main-dark;
+      }
+
+      .desktop & {
+        height: 5.625vw;
+        width: 15vw;
+        left: 42.5vw;
+        margin-top: 12vw;
+        border-radius: 10vw;
+        font-size: 1.5vw;
+        line-height: 5.625vw;
+        border: 1px solid white;
+        color: white;
+      }
+
+      &:hover, &:active {
+        color: white;
+        border: 1px solid $main-dark;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        background: $main-dark;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        right: 100%;
+        z-index: -1;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:hover:before, &:active:before {
+        right: 0;
+      }
+    }
+
+    #LandingImage{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+      z-index: -1;
+
+      img {
+        transform: scale(1.01);
+      }
+
+      .phone & {
+        img {
+          margin-left: -52.5vh;
+          filter: blur(1vw);
+          height: 100%;
+        }
+      }
+
+      .desktop & {
+        img {
+          width: 100%;
+          filter: blur(0.3vw);
+        }
+      }
+    }
+  }
 
   #content {
     display: block;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: $background;
     overflow: hidden;
     z-index: 0;
@@ -16,23 +178,25 @@
   .LogoBackground {
     position: fixed;
     fill: white;
-    transform: scale(1.5);
+    transform-origin: top;
+    // transform: scale(1.5);
 
     stroke: white;
     stroke-width: 2;
-    stroke-dasharray: 50;
+    stroke-dasharray: 290;
+    stroke-dashoffset: 290;
 
-    .portrait & {
-      height: 10vw;
-      width: 10vw;
-      top: 10vw;
+    .phone & {
+      height: 15vw;
+      width: 15vw;
+      top: 2.5vw;
       left: 10vw;
     }
 
-    .landscape & {
-      height: 4vw;
-      width: 4vw;
-      top: 5vw;
+    .desktop & {
+      height: 2vw;
+      width: 2vw;
+      top: 1vw;
       left: 5vw;
     }
   }
@@ -40,23 +204,28 @@
   .Logo {
     position: fixed;
     fill: none;
-    stroke-dashoffset: 120;
-    stroke-dasharray: 120;
-    stroke: $grey-medium;
+    stroke-dashoffset: 230;
+    stroke-dasharray: 230;
+    stroke: $main-darker;
 
-    .portrait & {
+    .circle-small {
+      fill: $main-darker;
+      fill-opacity: 1;
+    }
+
+    .phone & {
       stroke-width: 3;
       height: 10vw;
       width: 10vw;
-      top: 10vw;
+      top: 5vw;
       left: 10vw;
     }
 
-    .landscape & {
+    .desktop & {
       stroke-width: 5;
-      height: 4vw;
-      width: 4vw;
-      top: 5vw;
+      height: 3vw;
+      width: 3vw;
+      top: 1vw;
       left: 5vw;
     }
 
@@ -65,18 +234,18 @@
   #SectionCover{
     display: block;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-color: $grey-light;
     position: absolute;
     z-index: 2;
     opacity: 1;
 
-    .landscape & {
+    .desktop & {
       top:0px;
-      left:100vw;
+      left:100%;
     }
 
-    .portrait & {
+    .phone & {
       top: 100vh;
       left: 0;
     }

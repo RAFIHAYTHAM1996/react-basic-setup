@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Section from '../../Components/Section/Section';
 import InstagramProfile from '../../Components/InstagramProfile/InstagramProfile';
 import { connect } from 'react-redux';
+import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
 
 class About extends Component{
 
@@ -13,16 +14,17 @@ class About extends Component{
   }
 
 	componentDidUpdate(){
+
 	}
 
 	render(){
 		return(
-			<Section id="About">
+			<Section id="About" ref={el => this.section = el}>
 				<div className="Content">
 					<h1>Hi,</h1>
-					<p>I&#39;m Rafi George, a Creative Developer from Toronto, Canada.</p>
+					<p>I&#39;m Rafi George, a Software Developer from Toronto, Canada.</p>
 					{
-						//<InstagramProfile/>
+						// <InstagramProfile/>
 					}
 				</div>
 			</Section>
