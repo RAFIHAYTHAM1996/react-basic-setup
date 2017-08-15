@@ -16,6 +16,14 @@ var checkDevice = function() {
   return device;
 };
 
+var checkMobile = function() {
+  var device = '';
+  if (md.mobile()) {
+    device = 'mobile';
+  }
+  return device;
+}
+
 var checkVendor = function() {
   return (navigator.vendor) ? navigator.vendor.toLowerCase() : "";
 };
@@ -61,7 +69,7 @@ var checkManufacturer = function() {
 };
 
 var getClasses = function() {
-  var classes = [checkDevice(), 'x' + checkDevicePixelRatio(), checkOrientation(), checkBrowser(), 'v' + utilBrowser.checkVersion(), (utilOS.os()).replace(/\s/g, '_').toLocaleLowerCase()];
+  var classes = [checkDevice(), checkMobile(), 'x' + checkDevicePixelRatio(), checkOrientation(), checkBrowser(), 'v' + utilBrowser.checkVersion(), (utilOS.os()).replace(/\s/g, '_').toLocaleLowerCase()];
   if (md.mobile()) classes.push(checkManufacturer());
   return classes.filter(function(cur) { return !!cur; });
 };

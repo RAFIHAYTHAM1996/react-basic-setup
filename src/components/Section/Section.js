@@ -3,6 +3,7 @@ import Tween from 'gsap';
 import { TweenLite, TweenMax, TimelineMax, EasePack, ScrollToPlugin } from 'gsap';
 import { connect } from 'react-redux';
 import {setCurrSection} from '../../actions/sectionManager';
+import detect from '../../util/detect/';
 
 class Section extends Component{
 
@@ -58,7 +59,12 @@ class Section extends Component{
   }
   componentWillLeave(done) {
     this.tl.kill();
-    this.tl.add(TweenMax.to(document.getElementsByClassName("Header")[0], 0.5, {y: -window.innerWidth * 0.3, ease: Back.easeIn}));
+
+    if (detect.device === 'desktop') {
+      this.tl.add(TweenMax.to(document.getElementsByClassName("Header")[0], 0.5, {y: -window.innerWidth * 0.3, ease: Power3.easeIn}));
+    } else {
+      this.tl.add(TweenMax.to(document.getElementsByClassName("Header")[0], 0.5, {y: -window.innerWidth * 0.3, ease: Back.easeIn}));
+    }
 
     if (this.orientation === 'landscape') {
       this.tl.add(TweenMax.to(this.section, 0.5, {x: window.innerWidth, ease: Power3.easeOut, delay: this.animateOutDelay / 2}));

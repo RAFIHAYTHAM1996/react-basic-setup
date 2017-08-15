@@ -65,7 +65,7 @@ class MobileMenu extends Component{
 
     this.tl.add(TweenMax.to(this.MobileMenu, 0, {visibility: "visible"}));
 
-    this.tl.add(TweenMax.to(sectionCover, 1 * this.timeScale, {top: "0px", opacity: 0.3, ease: Power3.easeInOut, delay: 0.3 * this.timeScale}));
+    this.tl.add(TweenMax.to(sectionCover, 1 * this.timeScale, {y: "0px", opacity: 0.3, ease: Power3.easeInOut, delay: 0.3 * this.timeScale}));
     this.tl.add(TweenMax.to(this.MobileMenu, 0.4 * this.timeScale, {height: "100%", ease: Power3.easeInOut, delay: -0.4 * this.timeScale}));
 
     this.tl.add(TweenMax.to(this.CenterLogo, 2 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));

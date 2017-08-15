@@ -12,38 +12,41 @@
 	}
 
 	.desktop & {
-		top: 4vw;
-		right: 4vw;
+		// top: 4vw;
+		// right: 4vw;
+		top: 0;
+		right: 0;
 		height: 5vw; //GSAP changes this to 86%
 		width: 0;	//GSAP changes this to 25%
-		background: $menu-background;
+		// background: $menu-background;
+		background: white;
 	}
 
 	#CloseButton{
 		position: absolute;
 		width: 15%;
-		right: 0;
-		top: 0;
+		right: 2vw;
+		top: 2vw;
 
 		svg{
 			cursor: pointer;
 			transition: all 0.3s ease-in-out;
 			transform-origin: center;
-			stroke-width: 1;
+			stroke-width: 0.25;
 			stroke: $main-medium;
 
 			&:hover{
-				transform: rotateZ(-90deg);
+				transform: rotateZ(-90deg) scale(0.75);
 			}
 		}
 	}
 
 	ul.navList{
 		list-style: none;
-		margin-top: 15vh;
+		margin-top: 10vw;
 
 		li a {
-			@extend .Lato-Hairline;
+			@extend .Lato-Light;
 			text-decoration: none;
 			text-transform: uppercase;
 			transition: all 0.3s ease-in-out;
@@ -51,9 +54,9 @@
 			position: relative;
 			float: left;
 			cursor: pointer;
-			color: white;
+			color: $main-medium;
 			left: 0;
-			transform: scaleY(0.8);
+			transform: translateY(-5vw);
 			opacity: 0;
 
 			&:hover{
@@ -69,7 +72,7 @@
 				content: " ";
 				display: block;
 				position: absolute;
-				background-color: white;
+				background-color: $grey-lighter;
 				height: 100%;
 				width: 1%;
 				top: 0;

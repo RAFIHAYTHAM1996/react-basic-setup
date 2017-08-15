@@ -16,7 +16,7 @@
       transform: scale(1.01);
     }
 
-    .phone & {
+    .mobile & {
       img {
         margin-left: -90%;
         filter: blur(1vw) saturate(0.5);
@@ -97,7 +97,7 @@
       }
     }
 
-    .phone & {
+    .mobile & {
       width: 80vw;
       font-size: 7vw;
       left: 10vw;
@@ -133,7 +133,7 @@
     z-index: 1;
     background: rgba($main-darker, .2);
 
-    .phone & {
+    .mobile & {
       height: 15vw;
       width: 40vw;
       left: 30vw;

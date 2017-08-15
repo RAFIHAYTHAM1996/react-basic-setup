@@ -13,6 +13,7 @@ import MenuButton from '../../components/MenuButton/MenuButton';
 import RG from '../../../raw-assets/svg/RG.svg'
 import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
 import Image from '../../components/Image/Image';
+import MobileDetect from 'mobile-detect';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,10 +21,10 @@ class App extends React.Component {
     this.state = {
       width: 960,
       height: 570,
-      loggedIn: false
+      loggedIn: false,
+      device: ""
     };
     this.tl = new TimelineMax({paused: true});
-    this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
     this.timeScale = 0.35;
   }
 
@@ -32,7 +33,6 @@ class App extends React.Component {
       width: window.innerWidth,
       height: window.innerHeight
     });
-    this.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
   };
 
   componentWillMount() {
@@ -45,8 +45,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.tl = this.createTimeline();
-    this.tl.play();
+    if (this.state.loggedIn) {
+      this.tl = this.createTimeline();
+      this.tl.play();
+    }
+
+    this.setState({device: detect.device});
   }
 
   createTimeline = (done) => {
@@ -67,12 +71,15 @@ class App extends React.Component {
   }
 
   componentDidUpdate = () => {
-
+    var mobileDetect = new MobileDetect(navigator.userAgent);
+    if ((mobileDetect.mobile() && detect.device === 'desktop') || (!mobileDetect.mobile() && detect.device !== 'desktop')) {
+      location.reload();
+    }
   }
 
-  getContent(isTestRoute) {
+  getContent(isTestRoute, children) {
     if (this.props.ready || isTestRoute) {
-      return React.cloneElement(this.props.children, {
+      return React.cloneElement(children, {
         key: this.props.section,
         windowWidth: this.state.width,
         windowHeight: this.state.height,
@@ -97,7 +104,11 @@ class App extends React.Component {
     if (this.PasswordInput.value === '6229') {
       var tl = new TimelineMax({paused: true});
       tl.add(TweenMax.to(this.PasswordProtection, 1, {y: - window.innerHeight * 2, ease: Power3.easeIn}));
-      tl.add(TweenMax.to(this.PasswordProtection, 0.1, {display: 'none'}));
+      tl.add(TweenMax.to(this.PasswordProtection, 0.1, {display: 'none', onComplete: () => {
+        this.setState({loggedIn: true});
+        this.tl = this.createTimeline();
+        this.tl.play();
+      }}));
       tl.play();
     } else {
       this.description.innerHTML = "INCORRECT PASSWORD";
@@ -109,34 +120,41 @@ class App extends React.Component {
 
     return (
       <div id="app">
-        <div id="PasswordProtection" ref={el => this.PasswordProtection = el} >
-          <div id="LandingImage">
-            <Image src="./assets/images/EmoRoad.jpg"/>
+      {
+        !this.state.loggedIn ? (
+          <div id="PasswordProtection" ref={el => this.PasswordProtection = el} >
+            <div id="LandingImage">
+              <Image src="./assets/images/EmoRoad.jpg"/>
+            </div>
+            <h1 className="description" ref={el => this.description = el} >SITE UNDER MAINTENANCE</h1>
+            <input type="number" placeholder="PASSWORD" ref={el => this.PasswordInput = el} />
+            <div className="ENTER" onClick={this.checkPassword}>
+    					ENTER
+    				</div>
           </div>
-          <h1 className="description" ref={el => this.description = el} >SITE UNDER MAINTENANCE</h1>
-          <input type="number" placeholder="PASSWORD" ref={el => this.PasswordInput = el} />
-          <div className="ENTER" onClick={this.checkPassword}>
-  					ENTER
-  				</div>
-        </div>
-        <TransitionGroup id="content" component="div" transitionMode="out-in">
-          {this.getContent(isTestRoute)}
-          <div className="Header" ref={el => this.HEADER = el} >
-            <MenuButton/>
+        ) : (
+          <TransitionGroup id="content" component="div" transitionMode="out-in">
+            {this.getContent(isTestRoute, this.props.children)}
+            <div className="Header" ref={el => this.HEADER = el} >
+              <MenuButton/>
 
-            <svg viewBox="0 0 100 100" className="LogoBackground">
-               <circle cx="50" cy="50" r="45" ref={el => this.circle = el}/>
-            </svg>
-            <svg dangerouslySetInnerHTML={{__html: RG}} className="Logo" ref={el => this.circleText = el} >
-            </svg>
-          </div>
+              <svg viewBox="0 0 100 100" className="LogoBackground">
+                 <circle cx="50" cy="50" r="45" ref={el => this.circle = el}/>
+              </svg>
+              <svg dangerouslySetInnerHTML={{__html: RG}} className="Logo" ref={el => this.circleText = el} onClick={ () => {
+                this.context.router.push("/");
+              } }>
+              </svg>
+            </div>
 
-          {
-            detect.device === "desktop" ? <Menu parent={this}/> : <MobileMenu parent={this}/>
-          }
+            {
+              detect.device === "desktop" ? <Menu parent={this}/> : <MobileMenu parent={this}/>
+            }
 
-          <div className="SectionCover" id="SectionCover"/>
-        </TransitionGroup>
+            <div className="SectionCover" id="SectionCover"/>
+          </TransitionGroup>
+        )
+      }
         { detect.isPhone && <RotateScreen/> }
       </div>
     )
@@ -149,7 +167,8 @@ const mapStateToProps = (state, ownProps) => {
     progress: state.progress,
     ready: state.ready,
     assets: state.assets,
-    section: state.section
+    section: state.section,
+    route: state.routing
   }
 };
 

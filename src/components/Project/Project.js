@@ -130,10 +130,12 @@ class Project extends Component{
             </div>
           </div>
           <div className="HeadImage">
-            <img src={this.src + this.data.headImage} alt={this.data.headImage} />
+            <img src={this.src + this.data.thumbImage} alt={this.data.thumbImage} onLoad={this.onImgLoad}/>
           </div>
           <div className="Content" ref={el => this.Content = el}>
             <p className="Copy">{this.data.copy}</p>
+            <img src={this.src + this.data.headImage} alt={this.data.headImage} />
+            <img src={this.src + this.data.headImage} alt={this.data.headImage} />
             <img src={this.src + this.data.headImage} alt={this.data.headImage} />
             <p className="Copy">{this.data.copy}</p>
           </div>

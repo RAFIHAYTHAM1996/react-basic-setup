@@ -41,32 +41,27 @@ class Menu extends Component{
     // var menuWidth = this.orientation === 'landscape' ? (window.innerWidth * 0.25) > 300 ? (window.innerWidth * 0.25) : 300 : window.innerWidth;
     // var menuHeight = this.orientation === 'landscape' ? window.innerHeight * 0.86 : window.innerHeight;
     var sectionCover = document.getElementById("SectionCover");
+    var section = document.getElementsByClassName("Section");
     var front = document.querySelector(".CloseButton .front");
     var back = document.querySelector(".CloseButton .back");
     var xButtonDuration = 0.25, timeScale = 0.65;
     var menu = document.getElementById("Menu");
-
     this.tl.kill();
     this.tl.stop();
 
     this.tl = new TimelineMax({paused: true});
+    this.tl.add(TweenMax.to(front, 0, {scaleX: 0, transformOrigin: "center", rotationZ: -45}));
+    this.tl.add(TweenMax.to(back, 0, {scaleX: 0, transformOrigin: "center", rotationZ: 45}));
     this.tl.add(TweenMax.to(menu, 0, {visibility: "visible", delay: 0.3}));
 
-    // this.tl.add(TweenMax.to(front, 0, {scaleY: "0.3", ease: Power3.easeInOut}));
-    // this.tl.add(TweenMax.to(back, 0, {scaleY: "0.3", ease: Power3.easeInOut}));
+    this.tl.add(TweenMax.to(sectionCover, 0.5 * timeScale, {x: "0px", opacity: 0.3, ease: Power3.easeInOut}));
+    this.tl.add(TweenMax.to(menu, 0.2 * timeScale, {width: "30vw", ease: Power3.easeInOut, delay: -0.2 * timeScale}));
+    this.tl.add(TweenMax.to(menu, 0.4 * timeScale, {height: "100%", ease: Power3.easeInOut}));
 
-    this.tl.add(TweenMax.to(sectionCover, 0.5 * timeScale, {left: "0px", opacity: 0.3, ease: Power3.easeInOut}));
-    this.tl.add(TweenMax.to(menu, 0.2 * timeScale, {width: "35vw", ease: Power3.easeInOut, delay: -0.2 * timeScale}));
-    this.tl.add(TweenMax.to(menu, 0.4 * timeScale, {height: "86%", ease: Power3.easeInOut}));
+    this.tl.add(TweenMax.staggerTo("ul.navList li a", 0.5 * timeScale, {y: "5vw", opacity: 1, ease: Back.easeOut}, 0.1));
 
-    // this.tl.add(TweenMax.staggerTo("ul.navList li a", 0.2 * timeScale, {height: 'auto', scale: 1, paddingTop: "5%", paddingBottom: "5%", delay: -0.1 * timeScale, ease: Back.easeOut}, 0.05));
-    // this.tl.add(TweenMax.staggerTo("ul.navList li a", 1 * timeScale, {scaleY: 1, ease: Back.easeOut}, 0.05));
-    this.tl.add(TweenMax.staggerTo("ul.navList li a", 0.5 * timeScale, {scaleY: 1, opacity: 1, ease: Back.easeOut}, 0.1));
-
-    // this.tl.add(TweenMax.to([back, front], 0.5 * timeScale, {scaleX: "1", ease: Power3.easeInOut}));
-    //
-    // this.tl.add(TweenMax.to(front, xButtonDuration, {transformOrigin:"center",rotation:45, ease: Back.easeOut, delay: -xButtonDuration*2}));
-    // this.tl.add(TweenMax.to(back, xButtonDuration, {transformOrigin:"center",rotation:-45, ease: Back.easeOut, delay: -xButtonDuration, onComplete: done}));
+    this.tl.add(TweenMax.to([back, front], 0.5 * timeScale, {scaleX: "1", ease: Power3.easeInOut}));
+    this.tl.add(TweenMax.to([back, front], 0.5 * timeScale, {rotationZ: 0, ease: Power3.easeInOut}));
 
     return this.tl;
   }
@@ -77,8 +72,10 @@ class Menu extends Component{
     if(menu){
 
       if(this.props.menuState === keys.MENU_OFF){
+        this.tl.timeScale(1.25);
         this.tl.reverse();
       } else if(this.props.menuState === keys.MENU_ON){
+        this.tl.timeScale(1);
         this.tl.play();
       }
     }
@@ -97,8 +94,8 @@ class Menu extends Component{
             // <svg dangerouslySetInnerHTML={{__html: bar}}></svg>
           }
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">
-            <line x1="2.5" y1="2.5" x2="7.5" y2="7.5"/>
-            <line x1="7.5" y1="2.5" x2="2.5" y2="7.5"/>
+            <line className="front" x1="2.5" y1="2.5" x2="7.5" y2="7.5"/>
+            <line className="back" x1="7.5" y1="2.5" x2="2.5" y2="7.5"/>
           </svg>
         </div>
         <ul className="navList">

@@ -10,6 +10,7 @@ import BackButton from '../../components/BackButton/BackButton';
 import Image from '../../components/Image/Image';
 import projectsJSON from '../../../static/json/projects.json';
 import config from '../../../config.json';
+import detect from '../../util/detect';
 
 class Work extends Component{
 
@@ -44,7 +45,11 @@ class Work extends Component{
 		var tl = new TimelineMax({paused: true, delay: 1});
 		tl.add(TweenMax.to(this.OptionsContainer.children, 0, {y: window.innerHeight * 0.3, opacity: 0}));
 		tl.add(TweenMax.staggerTo(this.OptionsContainer.children, 1, {y: 0, ease: Power3.easeInOut, opacity: 1, onComplete: done}, 0.2));
-		tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Back.easeOut, delay: -0.5});
+		if (detect.device !== 'desktop') {
+			tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Back.easeOut, delay: -0.5});
+		} else {
+			tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Power3.easeOut, delay: -0.5});
+		}
 		tl.play();
 	}
 
@@ -61,7 +66,11 @@ class Work extends Component{
 		// } else {
 			timeline.staggerTo(this.OptionsContainer.children, 1, {y: window.innerHeight * 0.3, opacity: 0, ease: Back.easeIn}, 0.2);
 		// }
-		timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Back.easeIn, delay: -0.5});
+		if (detect.device !== 'desktop') {
+			timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Back.easeIn, delay: -0.5});
+		} else {
+			timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Power3.easeIn, delay: -0.5});
+		}
 		timeline.to(OptionsContainer, 0.3, {height: "100%", width: "100%", top: 0, left: 0, ease: Back.easeIn, onComplete: callback});
 		return timeline;
 	}

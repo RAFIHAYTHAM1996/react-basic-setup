@@ -76,7 +76,10 @@
 			height: 100%;
 
 			img {
-				width: 100%;
+				display: block;
+				height: 80%;
+				margin: auto;
+				margin-top: 7.5%;
 			}
 		}
 
@@ -105,13 +108,15 @@
 			}
 
 			img {
-				width: 100%;
+				display: inline-block;
+				margin: auto;
+				width: 30%;
 			}
 
 		}
 	}
 
-	.phone & {
+	.mobile & {
 
 		.ProjectHeader {
 			height: 30vw;
