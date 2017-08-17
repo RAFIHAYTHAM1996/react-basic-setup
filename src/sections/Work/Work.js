@@ -43,13 +43,11 @@ class Work extends Component{
 
 	animateIn = (done) => {
 		var tl = new TimelineMax({paused: true, delay: 1});
-		tl.add(TweenMax.to(this.OptionsContainer.children, 0, {y: window.innerHeight * 0.3, opacity: 0}));
+		tl.add(TweenMax.to(this.OptionsContainer.children, 0, {y: window.innerHeight * 0.3, opacity: 0, delay: -1}));
+
+		tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Power3.easeOut, delay: -0.5});
+
 		tl.add(TweenMax.staggerTo(this.OptionsContainer.children, 1, {y: 0, ease: Power3.easeInOut, opacity: 1, onComplete: done}, 0.2));
-		if (detect.device !== 'desktop') {
-			tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Back.easeOut, delay: -0.5});
-		} else {
-			tl.to(document.getElementsByClassName("Header")[0], 1, {y: 0, ease: Power3.easeOut, delay: -0.5});
-		}
 		tl.play();
 	}
 
@@ -60,16 +58,14 @@ class Work extends Component{
 
 		timeline.to(document.getElementsByClassName("Header")[0], 0, {y: 0});
 
-		// if (this.orientation === 'landscape') {
-		// 	timeline.to(elements,  0.5, {opacity: 0, ease: Power3.easeInOut});
-		// 	timeline.to(elements,  0.2, {margin: "-15vw", ease: Back.easeIn, delay: -0.3});
-		// } else {
-			timeline.staggerTo(this.OptionsContainer.children, 1, {y: window.innerHeight * 0.3, opacity: 0, ease: Back.easeIn}, 0.2);
-		// }
 		if (detect.device !== 'desktop') {
-			timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Back.easeIn, delay: -0.5});
+			timeline.staggerTo(this.OptionsContainer.children, 1, {y: window.innerHeight * 0.3, opacity: 0, ease: Back.easeIn}, 0.2);
+			// timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Back.easeIn, delay: -1});
 		} else {
-			timeline.to(document.getElementsByClassName("Header")[0], 1, {y: -window.innerWidth * 0.3, ease: Power3.easeIn, delay: -0.5});
+			var duration = 1, elementsPerRow = 3, rows = this.OptionsContainer.children.length/elementsPerRow;
+			for (var i = 0; i < rows; i++) {
+				timeline.to([...this.OptionsContainer.children].slice(elementsPerRow * i, elementsPerRow * i + 3), duration, {opacity: 0, ease: Expo.easeOut, delay: -duration/2});
+			}
 		}
 		timeline.to(OptionsContainer, 0.3, {height: "100%", width: "100%", top: 0, left: 0, ease: Back.easeIn, onComplete: callback});
 		return timeline;
@@ -82,9 +78,9 @@ class Work extends Component{
 	}
 
 	render(){
-		navigator.geolocation.getCurrentPosition((position)=>{
-	    console.log(position);
-	  });
+		// navigator.geolocation.getCurrentPosition((position)=>{
+	  //   console.log(position);
+	  // });
 
 		return(
 			<Section id="Work">
@@ -97,7 +93,7 @@ class Work extends Component{
 									<div className="title">
 										{item.title}
 									</div>
-									<img src={this.src + item.thumbImage} alt={item.title + " Thumbnail"} />
+									<img src={this.src + item.assetPath + item.thumbImage} alt={item.title + " Thumbnail"} />
 									<div className="overlay"></div>
 								</div>
 							)

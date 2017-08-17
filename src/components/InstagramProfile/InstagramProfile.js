@@ -23,7 +23,6 @@ class InstagramProfile extends Component{
 			<div id={this.props.id} className={"InstagramProfile " + this.orientation}>
 				<img src={this.props.InstagramProfileData.profile_picture} id="profilePicture"/>
 				<h1>Instagram</h1>
-				<hr />
 				{
 					this.props.InstagramRecentMedia ? (
 						<div className="flex">

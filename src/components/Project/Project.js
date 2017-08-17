@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player';
 import projectsJSON from '../../../static/json/projects.json';
 import config from '../../../config.json';
 import detect from '../../util/detect/index';
+import ActionButton from '../../components/ActionButton/ActionButton';
 
 class Project extends Component{
 
@@ -44,15 +45,17 @@ class Project extends Component{
         HeaderChildren = this.ProjectHeader.children,
         BackButtonChildren = this.BackButton.children[0].children;
 
+    timeline.to(this.HeadImage, 0, {alpha: 0});
     timeline.to(this.Content.children, 0, {y: window.innerHeight * 0.3, opacity: 0});
     timeline.to(this.ProjectHeader, 0, {y: -window.innerHeight * 0.3});
     timeline.to(this.BackButton, 0, {strokeDashoffset: 310, strokeDasharray: 310});
     timeline.to([BackButtonChildren[0], BackButtonChildren[2], BackButtonChildren[3]], 0, {fillOpacity: 0});
     timeline.to(this.Project, 0, {display: "block"});
 
-    timeline.staggerTo(this.Content.children, 1, {y: 0, ease: Power3.easeInOut, opacity: 1}, 0.1);
+    timeline.to(this.HeadImage, 0.5, {alpha: 1, delay: 0.5});
+    timeline.staggerTo(this.Content.children, 1, {y: 0, ease: Power3.easeInOut, opacity: 1, delay: -0.5}, 0.1);
     timeline.to(this.ProjectHeader, 0.5, {y: 0, delay: -1});
-    timeline.to(this.BackButton, 1, {strokeDashoffset: 0, ease: Power3.easeInOut, delay: -0.5});
+    timeline.to(this.BackButton, 1, {strokeDashoffset: 0, ease: Power3.easeInOut, delay: -2});
     timeline.to(BackButtonChildren[0], 0.25, {fillOpacity: 1, strokeWidth: 0});
     timeline.to([BackButtonChildren[2], BackButtonChildren[3]], 0.25, {fillOpacity: 1});
     return timeline;
@@ -67,7 +70,7 @@ class Project extends Component{
     //   timeline.to(this.ProjectHeader.children[0], 0.5, {paddingTop: "2vw", height: "calc(100% - 2vw)", fontSize: "3.5vw", ease: Power3.easeOut, delay: -0.5});
     //   timeline.to(this.ProjectHeader.children[0].children[0], 0.5, {height: "7.5vw", width: "7.5vw", ease: Power3.easeOut, delay: -0.5});
     // } else {
-    if (detect.device === 'phone') {
+    if (detect.device !== 'desktop') {
       timeline.to(this.ProjectHeader, 0.5, {boxShadow: "0 1vw 5vw rgba(0, 0, 0, 0.25)", ease: Power3.easeOut});
       timeline.to(this.ProjectHeader, 0.5, {height: "20vw", ease: Power3.easeOut, delay: -0.5});
       timeline.to(this.ProjectHeader.children[0], 0.5, {paddingTop: "6vw", height: "calc(100% - 6vw)", fontSize: "6vw", ease: Power3.easeOut, delay: -0.5});
@@ -129,15 +132,34 @@ class Project extends Component{
               <p className="Client">{this.data.client}</p>
             </div>
           </div>
-          <div className="HeadImage">
-            <img src={this.src + this.data.thumbImage} alt={this.data.thumbImage} onLoad={this.onImgLoad}/>
+          <div className="HeadContent">
+            {
+              detect.device === "desktop" ? (
+                <div className="HeadInfo">
+                  <h1 className="Title">{this.data.title}</h1>
+                  <p className="Client">{this.data.client}</p>
+                </div>
+              ) : ""
+            }
+            <div className="HeadImage">
+              <img src={this.src + this.data.assetPath + this.data.thumbImage} alt={this.data.thumbImage} ref={el => this.HeadImage = el}/>
+            </div>
           </div>
           <div className="Content" ref={el => this.Content = el}>
+            <p className="Copy">{this.data.description}</p>
+            {
+              this.data.images.map((item, index)=>{
+                return (
+                  <img src={this.src + this.data.assetPath + item} alt="Screenshot" key={index}/>
+                )
+              })
+            }
             <p className="Copy">{this.data.copy}</p>
-            <img src={this.src + this.data.headImage} alt={this.data.headImage} />
-            <img src={this.src + this.data.headImage} alt={this.data.headImage} />
-            <img src={this.src + this.data.headImage} alt={this.data.headImage} />
-            <p className="Copy">{this.data.copy}</p>
+            {
+              this.data.url ? (
+                <ActionButton url={this.data.url} text={"Product Site"} />
+              ) : ""
+            }
           </div>
         </div>
       ) : ""

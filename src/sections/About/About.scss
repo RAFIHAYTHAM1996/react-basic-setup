@@ -1,8 +1,6 @@
 #About{
 
   background-color: $grey-lighter;
-  // background: url("./assets/images/background1.jpg") no-repeat;
-  // background-size: cover;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -10,21 +8,40 @@
   align-items: center;
   align-content: center;
   color: white;
+  margin-top: 10vh;
 
   .Content {
     margin: auto;
+    height: 100%;
+    width: 100%;
 
     h1, p {
       @extend .ExoLight;
-      color: $grey-light;
+      color: $grey-medium;
     }
 
     .desktop & {
-      width: 40%;
+      width: 90%;
     }
 
     .mobile & {
       width: 80%;
+    }
+
+    .SubContainer {
+      display: inline-block;
+      position: relative;
+
+      .desktop & {
+        height: 100%;
+        width: 45%;
+      }
+
+      .mobile & {
+        height: 100%;
+        width: 100%;
+      }
+
     }
 
   }

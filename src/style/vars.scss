@@ -25,7 +25,7 @@ $menu-link-light: $main-light;
 $menu-link-dark: $main-dark;
 $menu-link-darker: darken($main-darker, 1);
 
-$background: white;
+$background: $grey-lighter;
 
 $ASSET_PATH: './assets/' !default;
 $images: '#{$ASSET_PATH}images/';

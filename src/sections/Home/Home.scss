@@ -1,8 +1,5 @@
 #Home{
   background-color: $background;
-  // background: url("./assets/images/background1.jpg") no-repeat;
-  background-size: cover;
-
 
   #LandingImage{
     display: block;
@@ -13,14 +10,15 @@
     width: 100%;
 
     img {
-      transform: scale(1.01);
+      transform: scale(1.05);
     }
 
     .mobile & {
       img {
-        margin-left: -90%;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
         filter: blur(1vw) saturate(0.5);
-        height: 100%;
       }
       .Gradient {
         display: block;
@@ -46,7 +44,6 @@
 
   #MainMessage{
     @extend .ExoLight;
-    color: #555;
     position: absolute;
     z-index: 1;
     display: block;
@@ -73,12 +70,13 @@
     }
 
     .desktop & {
+      display: block;
       width: 50%;
       font-size: 2.5vw;
-      // left: 25vw;
       left: 5vh;
-      bottom: 5vh;
+      bottom: 5vw;
       text-align: left;
+      color: $grey-light;
 
       div {
         display: block;
@@ -91,7 +89,7 @@
       }
 
       h1 {
-        font-size: 6.8vw;
+        font-size: 6vw;
         line-height: 1;
         margin: 0;
       }
@@ -101,22 +99,23 @@
       width: 80vw;
       font-size: 7vw;
       left: 10vw;
-      top: calc(50vh - 65vw);
+      top: calc(50vh - 55vw);
+      color: rgba($grey-medium, 0.7);
 
       h1 {
         font-size: 10vw;
-        line-height: 2;
+        line-height: 1;
       }
     }
 
 
-    span{
+    span {
       opacity: 0;
     }
 
     .special {
       @extend .ExoBlack;
-      color: $main-dark;
+      color: $main-medium;
     }
   }
 
@@ -125,7 +124,6 @@
     @extend .Lato-Medium;
     position: absolute;
     text-align: center;
-    color: $main-light;
     cursor: pointer;
     border: 1px solid $main-darker;
     transition: all 0.3s ease-in-out;
@@ -141,6 +139,7 @@
       border-radius: 10vw;
       font-size: 5vw;
       line-height: 15vw;
+      color: $grey-lighter;
     }
 
     .desktop & {
@@ -151,20 +150,22 @@
       border-radius: 10vw;
       font-size: 1.5vw;
       line-height: 5.625vw;
+      color: $main-light;
     }
 
     &:hover, &:active {
       color: white;
 
       p {
-        animation: fadeOutInRight 0.25s linear 0s 1;
+        animation: fadeOutInRight 0.25s ease-in-out 0s 1;
 
         @keyframes fadeOutInRight {
-          0% {opacity: 1; transform: translateX(0.5)}
+          0% {opacity: 1; transform: translateX(0.5vw)}
           50% {opacity: 0; transform: translateX(1.5vw)}
           51% {opacity: 0; transform: translateX(-0.5vw)}
-          100% {opacity: 1; transform: translateX(0.5)}
+          100% {opacity: 1; transform: translateX(0.5vw)}
         }
+
       }
 
       span.arrow {
@@ -186,7 +187,10 @@
     }
 
     p {
-      transform: translateX(0.5vw);
+
+      .desktop & {
+        transform: translateX(0.5vw);
+      }
 
       span.arrow {
         display: inline-block;
@@ -195,8 +199,11 @@
         line-height: 0.5;
         top: 5vw;
         opacity: 0;
-        transform: translateX(-0.5vw);
         transition: all 0.25s ease-in-out;
+
+        .mobile & {
+          display: none;
+        }
       }
     }
 

@@ -38,8 +38,6 @@ class Menu extends Component{
   }
 
   createTimeline = (done) => {
-    // var menuWidth = this.orientation === 'landscape' ? (window.innerWidth * 0.25) > 300 ? (window.innerWidth * 0.25) : 300 : window.innerWidth;
-    // var menuHeight = this.orientation === 'landscape' ? window.innerHeight * 0.86 : window.innerHeight;
     var sectionCover = document.getElementById("SectionCover");
     var section = document.getElementsByClassName("Section");
     var front = document.querySelector(".CloseButton .front");
@@ -83,7 +81,8 @@ class Menu extends Component{
 
   OnClick(route){
     this.onMenuToggle();
-    this.changeSection({nextSection: route});
+    // this.changeSection({nextSection: route});
+    this.context.router.push(route);
   }
 
 	render(){

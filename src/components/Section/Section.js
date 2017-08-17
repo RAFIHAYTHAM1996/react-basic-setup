@@ -23,11 +23,11 @@ class Section extends Component{
   }
 
   componentDidUpdate(){
-    if((this.props.section.currSection !== this.props.section.nextSection && this.section.id.toLowerCase() !== this.props.section.nextSection)){
-      this.componentWillLeave(() => {
-        this.context.router.push(this.props.section.nextSection);
-      });
-    }
+    // if((this.props.section.currSection !== this.props.section.nextSection && this.section.id.toLowerCase() !== this.props.section.nextSection)){
+    //   this.componentWillLeave(() => {
+    //     this.context.router.push(this.props.section.nextSection);
+    //   });
+    // }
   }
 
   componentWillUnmount(){

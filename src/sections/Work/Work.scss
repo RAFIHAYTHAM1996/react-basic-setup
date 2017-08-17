@@ -75,7 +75,7 @@
         opacity: 1;
       }
       img {
-        filter: saturate(1);
+        filter: saturate(0.5) opacity(0.5);
       }
     }
 
@@ -114,9 +114,7 @@
       margin: auto;
       opacity: 1;
       transition: all 0.25s cubic-bezier(0.7, 0, 1, 1);
-      filter: saturate(0);
-      // filter: blur(0.3vw) saturate(0);
-      // transform: scale(1.05);
+      filter: saturate(1);
     }
 
     .title{

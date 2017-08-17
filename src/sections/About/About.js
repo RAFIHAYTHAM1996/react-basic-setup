@@ -21,11 +21,15 @@ class About extends Component{
 		return(
 			<Section id="About" ref={el => this.section = el}>
 				<div className="Content">
-					<h1>Hi,</h1>
-					<p>I&#39;m Rafi George, a Software Developer from Toronto, Canada.</p>
 					{
-						// <InstagramProfile/>
+						<div className="SubContainer">
+							// <InstagramProfile/>
+						</div>
 					}
+					<div className="SubContainer">
+						<h1>Hi,</h1>
+						<p>I&#39;m Rafi George, a Software Developer from Toronto, Canada.</p>
+					</div>
 				</div>
 			</Section>
 		);

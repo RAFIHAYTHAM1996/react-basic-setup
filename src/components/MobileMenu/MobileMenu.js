@@ -61,25 +61,25 @@ class MobileMenu extends Component{
     this.tl.add(TweenMax.to(this.CenterLogo, 0, {strokeDashoffset: 230, stroke: "#eee", fillOpacity: 0}));
     this.tl.add(TweenMax.to(this.CloseButtonCircle, 0, {scale: 0.5, fillOpacity: 0}));
     this.tl.add(TweenMax.to(this.LinksContainer, 0, {rotationZ: -180, ease: Sine.easeOut}));
-    this.tl.add(TweenMax.to([this.CloseButtonFrontLine, this.CloseButtonBackLine], 0, {scaleX: 0.01, scaleY: 0.5}));
+    this.tl.add(TweenMax.to([this.CloseButtonFrontLine, this.CloseButtonBackLine], 0, {scaleX: 0.01, scaleY: 0.5, rotationZ: 0}));
 
     this.tl.add(TweenMax.to(this.MobileMenu, 0, {visibility: "visible"}));
 
-    this.tl.add(TweenMax.to(sectionCover, 1 * this.timeScale, {y: "0px", opacity: 0.3, ease: Power3.easeInOut, delay: 0.3 * this.timeScale}));
-    this.tl.add(TweenMax.to(this.MobileMenu, 0.4 * this.timeScale, {height: "100%", ease: Power3.easeInOut, delay: -0.4 * this.timeScale}));
+    this.tl.add(TweenMax.to(sectionCover, 1 * this.timeScale, {y: "0px", opacity: 0.3, ease: Expo.easeInOut, delay: 0.3 * this.timeScale}));
+    this.tl.add(TweenMax.to(this.MobileMenu, 0.66 * this.timeScale, {height: "100%", ease: Expo.easeIn, delay: -0.66 * this.timeScale}));
 
-    this.tl.add(TweenMax.to(this.CenterLogo, 2 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));
-    this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {strokeDashoffset: 0, ease: Power3.easeOut}));
-    this.tl.add(TweenMax.to(this.circle, 1 * this.timeScale, {fillOpacity: 1, ease: Power3.easeOut}));
-    this.tl.add(TweenMax.to(this.CenterLogo, 1 * this.timeScale, {stroke: "#444", ease: Power3.easeOut, delay: -0.5 * this.timeScale}));
-    this.tl.add(TweenMax.to(this.LinksContainer, 2 * this.timeScale, {rotationZ: 0, ease: Sine.easeOut}));
-    this.tl.add(TweenMax.to(SVGs, 2 * this.timeScale, {fillOpacity: 1, delay: -2 * this.timeScale}));
-    this.tl.add(TweenMax.to(LinkTexts, 2 * this.timeScale, {fillOpacity: 1}));
+    this.tl.add(TweenMax.to(this.CenterLogo, 2 * this.timeScale, {strokeDashoffset: 0, ease: Expo.easeInOut}));
+    this.tl.add(TweenMax.to(this.circle, 2 * this.timeScale, {strokeDashoffset: 0, ease: Expo.easeInOut}));
+    this.tl.add(TweenMax.to(this.circle, 1.33 * this.timeScale, {fillOpacity: 1, ease: Expo.easeInOut, delay: -1.33 * this.timeScale}));
+    this.tl.add(TweenMax.to(this.CenterLogo, 0.66 * this.timeScale, {stroke: "#444", ease: Expo.easeInOut, delay: -0.66 * this.timeScale}));
+    this.tl.add(TweenMax.to(this.LinksContainer, 1.33 * this.timeScale, {rotationZ: 0, ease: Back.easeOut, delay: -0.66 * this.timeScale}));
+    this.tl.add(TweenMax.to(SVGs, 1.33 * this.timeScale, {fillOpacity: 1, delay: -1.33 * this.timeScale}));
+    this.tl.add(TweenMax.to(LinkTexts, 1.33 * this.timeScale, {fillOpacity: 1}));
 
     this.tl.add(TweenMax.to(this.CloseButtonCircle, 0.5 * this.timeScale, {scale: 1, fillOpacity: 1, ease: Back.easeOut, delay: -2 * this.timeScale}));
-    this.tl.add(TweenMax.to([this.CloseButtonFrontLine, this.CloseButtonBackLine], 0.3 * this.timeScale, {scaleX: 0.5, scaleY: 0.5}));
-    this.tl.add(TweenMax.to(this.CloseButtonFrontLine, 0.3 * this.timeScale, {rotationZ: 45}));
-    this.tl.add(TweenMax.to(this.CloseButtonBackLine, 0.3 * this.timeScale, {rotationZ: -45}));
+    this.tl.add(TweenMax.to([this.CloseButtonFrontLine, this.CloseButtonBackLine], 0.3 * this.timeScale, {scaleX: 0.5, scaleY: 0.5, ease: Expo.easeOut}));
+    this.tl.add(TweenMax.to(this.CloseButtonFrontLine, 0.3 * this.timeScale, {rotationZ: 45, ease: Expo.easeOut}));
+    this.tl.add(TweenMax.to(this.CloseButtonBackLine, 0.3 * this.timeScale, {rotationZ: -45, ease: Expo.easeOut}));
 
     return this.tl;
   }
@@ -96,7 +96,8 @@ class MobileMenu extends Component{
 
   OnClick(route){
     this.onMenuToggle();
-    this.changeSection({nextSection: route});
+    // this.changeSection({nextSection: route});
+    this.context.router.push(route);
   }
 
 	render(){
@@ -110,7 +111,6 @@ class MobileMenu extends Component{
           <svg dangerouslySetInnerHTML={{__html: Line}} ref={el => this.CloseButtonFrontLine = el} className="front"></svg>
           <svg dangerouslySetInnerHTML={{__html: Line}} ref={el => this.CloseButtonBackLine = el} className="back"></svg>
         </div>
-
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" className="LinksContainer" ref={el => this.LinksContainer = el}>
           <path d="M21.3,3.7l-8.8,8.8L3.7,3.7C5.9,1.4,9,0,12.5,0S19.1,1.4,21.3,3.7z" className="Link" key="home"  onClick={ this.OnClick.bind(this, "home")}/>

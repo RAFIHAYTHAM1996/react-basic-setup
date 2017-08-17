@@ -14,6 +14,7 @@ import RG from '../../../raw-assets/svg/RG.svg'
 import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
 import Image from '../../components/Image/Image';
 import MobileDetect from 'mobile-detect';
+import {toggleMenu} from '../../actions/menu';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends React.Component {
     this.state = {
       width: 960,
       height: 570,
-      loggedIn: false,
+      loggedIn: true,
       device: ""
     };
     this.tl = new TimelineMax({paused: true});
@@ -127,7 +128,7 @@ class App extends React.Component {
               <Image src="./assets/images/EmoRoad.jpg"/>
             </div>
             <h1 className="description" ref={el => this.description = el} >SITE UNDER MAINTENANCE</h1>
-            <input type="number" placeholder="PASSWORD" ref={el => this.PasswordInput = el} />
+            <input type="password" placeholder="PASSWORD" ref={el => this.PasswordInput = el} />
             <div className="ENTER" onClick={this.checkPassword}>
     					ENTER
     				</div>
@@ -151,7 +152,7 @@ class App extends React.Component {
               detect.device === "desktop" ? <Menu parent={this}/> : <MobileMenu parent={this}/>
             }
 
-            <div className="SectionCover" id="SectionCover"/>
+            <div className="SectionCover" id="SectionCover" onClick={this.props.onMenuToggle.bind(this)}/>
           </TransitionGroup>
         )
       }
@@ -176,7 +177,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onProgress: val => dispatch(setProgress(val)),
     onReady: val => dispatch(setReady(val)),
-    onSetAssets: val => dispatch(setAssets(val))
+    onSetAssets: val => dispatch(setAssets(val)),
+    onMenuToggle: val => dispatch(toggleMenu(val)),
   }
 };
 

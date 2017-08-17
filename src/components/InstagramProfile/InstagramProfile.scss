@@ -3,16 +3,17 @@
   display: block;
   background-color: white;
   color: $grey-light;
-  @extend .Lato-Light;
+  @extend .Rajdhani;
   text-align: center;
+  text-transform: uppercase;
   margin: 5%;
   overflow-y: scroll;
 
   $margin-size: 4vh;
 
   .desktop & {
-    height: 80vh;
-    width: calc(80vh * 0.8);
+    height: 80%;
+    width: 80%;
 
     .flex{
       display: flex;
@@ -58,16 +59,16 @@
   }
 
   .mobile & {
-    height: 50%;
-    width: calc(80vh * 0.8);
-    margin: 0;
+    height: 100%;
+    width: 100%;
+    margin: auto;
 
     img{
       display: inline-block;
 
       &#profilePicture{
         margin: $margin-size 0;
-        width: 50%;
+        width: 100%;
       }
 
       &.thumbnail{

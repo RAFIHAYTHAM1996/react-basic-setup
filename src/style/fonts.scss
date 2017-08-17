@@ -36,6 +36,18 @@ $fonts: '#{$ASSET_PATH}fonts/';
  *
  * © 2017 MyFonts Inc
 */
+
+@font-face {
+  font-family: 'Rajdhani-regular';
+  src: url($fonts + 'Rajdhani/Rajdhani-regular.ttf'),
+  url($fonts + 'Rajdhani-regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+.Rajdhani{
+  font-family: 'Rajdhani';
+}
+
 @font-face {
   font-family: 'Lato-Hairline';
   src: url($fonts + 'Lato/Lato-Hairline.ttf'),

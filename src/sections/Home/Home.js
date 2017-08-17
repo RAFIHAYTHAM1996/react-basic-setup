@@ -7,6 +7,7 @@ import { TweenMax, TimelineMax, EasePack, TextPlugin} from 'gsap';
 import ThreeModel from './ThreeJs/index.js';
 import {toggleMenu} from '../../actions/menu';
 import {changeSection} from '../../actions/sectionManager';
+import MobileDetect from 'mobile-detect';
 
 class Home extends Component{
 
@@ -24,6 +25,13 @@ class Home extends Component{
 		this.animatingFirstTime = true;
 		this.onMenuToggle = this.props.onMenuToggle.bind(this);
     this.changeSection = this.props.changeSection.bind(this);
+		this.backgroundImage = "EmoRoad.jpg";
+
+		var mobileDetect = new MobileDetect(navigator.userAgent);
+    if (mobileDetect.mobile()) {
+			var extIndex = this.backgroundImage.lastIndexOf(".");
+			this.backgroundImage = this.backgroundImage.substr(0, extIndex) + "-mobile" + this.backgroundImage.substr(extIndex, this.backgroundImage.length - extIndex);
+    }
   }
 
   componentDidMount(){
@@ -76,7 +84,8 @@ class Home extends Component{
   }
 
 	OnClick(route){
-		this.changeSection({nextSection: route});
+		// this.changeSection({nextSection: route});
+		this.context.router.push("work");
 	}
 
 	render(){
@@ -117,7 +126,7 @@ class Home extends Component{
 						{this.props.children}
 				</div>
 				<div id="LandingImage">
-					<Image src="./assets/images/EmoRoad.jpg"/>
+					<Image src={"./assets/images/" + this.backgroundImage}/>
 					<div className="Gradient"></div>
 				</div>
 			</Section>

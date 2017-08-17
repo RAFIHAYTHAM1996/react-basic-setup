@@ -1,0 +1,104 @@
+.ActionButton{
+  display: block;
+  @extend .Lato-Medium;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: all 0.3s ease-in-out;
+  transform-origin: left;
+  z-index: 1;
+  background: rgba($grey-darker, .2);
+  color: white;
+
+  .mobile & {
+    height: 15vw;
+    width: 40vw;
+    margin: 5vw auto;
+    border-radius: 10vw;
+    font-size: 5vw;
+    line-height: 15vw;
+  }
+
+  .desktop & {
+    height: 5.625vw;
+    width: 15vw;
+    border-radius: 10vw;
+    font-size: 1.5vw;
+    line-height: 5.625vw;
+  }
+
+  &:hover, &:active {
+    color: white;
+
+    p {
+      animation: fadeOutInRight 0.25s linear 0s 1;
+
+      @keyframes fadeOutInRight {
+        0% {opacity: 1; transform: translateX(0.5vw)}
+        50% {opacity: 0; transform: translateX(1.5vw)}
+        51% {opacity: 0; transform: translateX(-0.5vw)}
+        100% {opacity: 1; transform: translateX(0.5vw)}
+      }
+
+      // .desktop & {
+      //   @keyframes fadeOutInRight {
+      //     0% {opacity: 1; transform: translateX(0.5vw)}
+      //     50% {opacity: 0; transform: translateX(1.5vw)}
+      //     51% {opacity: 0; transform: translateX(-0.5vw)}
+      //     100% {opacity: 1; transform: translateX(0.5vw)}
+      //   }
+      // }
+      //
+      // .mobile & {
+      //   @keyframes fadeOutInRight {
+      //     0% {opacity: 1; transform: translateY(0)}
+      //     50% {opacity: 0; transform: translateY(-2vw)}
+      //     51% {opacity: 0; transform: translateY(2vw)}
+      //     100% {opacity: 1; transform: translateY(0)}
+      //   }
+      // }
+    }
+
+    span.arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: $grey-medium;
+    bottom: 0;
+    left: 0;
+    top: 100%;
+    right: 0;
+    z-index: -1;
+    transition: all 0.25s ease-in-out;
+
+    &:hover, &:active {
+      top: 0;
+    }
+  }
+
+  p {
+
+    .desktop & {
+      transform: translateX(0.5vw);
+    }
+
+    span.arrow {
+      display: inline-block;
+      @extend .Lato-Hairline;
+      font-size: 150%;
+      line-height: 0.5;
+      top: 5vw;
+      opacity: 0;
+      transition: all 0.25s ease-in-out;
+
+      .mobile & {
+        display: none;
+      }
+    }
+  }
+}
