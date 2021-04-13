@@ -1,0 +1,56 @@
+.TextArea {
+  cursor: pointer;
+
+  display: inline-block;
+  width: 100%;
+  margin-right: 10%;
+
+  .desktop & {
+    margin-bottom: 45px;
+  }
+
+  .Label {
+    cursor: pointer;
+    width: 80%;
+    @extend .Rajdhani;
+    color: $primary;
+
+    .ie & {
+      transform: translateY(0);
+    }
+  }
+
+  .Error {
+    color: red;
+  };
+
+  .TextField {
+    display: block;
+    width: 100%;
+    height: 200px;
+    border: none;
+    resize: none;
+    overflow: auto;
+    padding: 30px;
+    background-color: darken($primaryLight, 1);
+    border-top: 1px solid $primary;
+    color: $primary;
+
+    &:focus {
+      outline: none;
+    }
+
+    .desktop & {
+      height: 200px;
+    }
+
+    .phone & {
+      height: 400px;
+    }
+
+    .tablet & {
+      height: 230px;
+      padding-top: 0;
+    }
+  }
+}

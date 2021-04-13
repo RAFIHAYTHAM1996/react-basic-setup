@@ -1,0 +1,180 @@
+{
+  "projects": [
+    {
+      "url": "vac",
+      "images": [
+        "f6.jpg"
+      ],
+      "info": [
+        { "title": "name",
+          "content": "Vaughan Auto Center"
+        },
+        { "title": "project type",
+          "content": "Business Website, Brand Identity and Logo Design"
+        },
+        { "title": "client",
+          "content": "Vaughan Auto Center"
+        },
+        { "title": "Technology",
+          "content": "Wordpress"
+        }
+      ]
+    }, {
+      "url": "espresslabs",
+      "images": [
+        "espresslabs.jpg"
+      ],
+      "info": [
+        { "title": "name",
+          "content": "Espress Labs Inc"
+        },
+        { "title": "project type",
+          "content": "Website Development"
+        },
+        { "title": "agency",
+          "content": "Espress Labs"
+        },
+        { "title": "Technology",
+          "content": "React and NodeJS"
+        }
+      ]
+    }, {
+      "url": "futurebarbershop",
+      "images": [
+        "futurebarbershop.jpg"
+      ],
+      "info": [
+        { "title": "name",
+          "content": "Future Barbershop"
+        },
+        { "title": "project type",
+          "content": "Business Website"
+        },
+        { "title": "client",
+          "content": "Future Barbershop"
+        },
+        { "title": "Technology",
+          "content": "HTML, CSS, JAVASCRIPT"
+        }
+      ]
+    }
+  ],
+  "experience": {
+    "companies": [
+      {
+        "name": "Jam3",
+        "thumbnail": "jam3 copy.png"
+      },
+      {
+        "name": "Scotiabank",
+        "thumbnail": "scotiabank copy.png"
+      },
+      {
+        "name": "Royal Bank of Canada (RBC)",
+        "thumbnail": "rbc copy.png"
+      },
+      {
+        "name": "Toronto Transit Commision (TTC)",
+        "thumbnail": "ttc copy.png"
+      },
+      {
+        "name": "Espress Labs",
+        "thumbnail": "espress-labs copy.png"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Kudos Golf",
+        "thumbnail": "kudosgolf.com.jpg",
+        "link": "https://www.kudosgolf.com",
+        "category": "Business Website"
+      },
+      {
+        "name": "Amanda Pape",
+        "thumbnail": "amandapape.com.png",
+        "link": "http://www.amandapape.com",
+        "category": "Portfolio Website"
+      },
+      {
+        "name": "Artezan",
+        "thumbnail": "artezan.ca.png",
+        "link": "https://www.artezan.ca",
+        "category": "Business Website"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Agile",
+        "thumbnail": "agile.png"
+      },
+      {
+        "name": "NodeJS",
+        "thumbnail": "nodejs.png"
+      },
+      {
+        "name": "ExpressJS",
+        "thumbnail": "expressjs.png"
+      },
+      {
+        "name": "NextJS",
+        "thumbnail": "nextjs.png"
+      },
+      {
+        "name": "WebGL",
+        "thumbnail": "webgl.png"
+      },
+      {
+        "name": "PCF",
+        "thumbnail": "pcf.png"
+      },
+      {
+        "name": "UrbanCode by IBM",
+        "thumbnail": "urbancode.png"
+      },
+      {
+        "name": "Redis",
+        "thumbnail": "redis.png"
+      },
+      {
+        "name": "Jenkins",
+        "thumbnail": "jenkins.png"
+      },
+      {
+        "name": "MERN Stack",
+        "thumbnail": "mern.png"
+      },
+      {
+        "name": "React",
+        "thumbnail": "react.png"
+      },
+      {
+        "name": "Flutter",
+        "thumbnail": "flutter.png"
+      },
+      {
+        "name": "Sonarqube",
+        "thumbnail": "sonarqube.png"
+      },
+      {
+        "name": "Heroku",
+        "thumbnail": "heroku.png"
+      },
+      {
+        "name": "Unity",
+        "thumbnail": "unity.png"
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "user-alt",
+      "text": "An ambitious, detail-oriented and goal-driven Software Developer based in Toronto, Canada. I believe time management and organizational skills are key in tackling down tasks."
+    },{
+      "icon": "smile-beam",
+      "text": "Over the past few years, I have had the honor to work with fantastic organizations. Independantly, and within teams, I've been able to build products used by thousands - if not millions - of people."
+    },{
+      "icon": "object-group",
+      "text": "Almost everything is constantly changing and, therefore, I believe in the significance of always expanding my knowledge and skillset in order to adapt with the rapid change."
+    }
+  ]
+}

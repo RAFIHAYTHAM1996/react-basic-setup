@@ -1,0 +1,126 @@
+/*
+ * ====================================================================
+ * fonts.scss
+ * Fonts go here, duh
+ * ====================================================================
+ */
+$fonts: '#{$ASSET_PATH}fonts/';
+
+@font-face {
+  font-family: 'roboto';
+  src: url($fonts + 'roboto/roboto-regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+.Roboto {
+  font-family: 'roboto';
+}
+
+@font-face {
+  font-family: 'roboto-black';
+  src: url($fonts + 'roboto/roboto-black.ttf') format('truetype');
+  font-style: normal;
+}
+
+.RobotoBlack {
+  font-family: 'roboto-black';
+}
+
+@font-face {
+  font-family: 'uni-sans-heavy-italic';
+  src: url($fonts + 'uni-sans/uni-sans-heavy-italic.otf'),
+  url($fonts + 'uni-sans/uni-sans-heavy-italic.otf') format('OpenType');
+  font-style: normal;
+}
+
+.UniSansHeavyItalic {
+  font-family: 'uni-sans-heavy-italic';
+}
+
+@font-face {
+  font-family: 'uni-sans-heavy';
+  src: url($fonts + 'uni-sans/uni-sans-heavy.otf'),
+  url($fonts + 'uni-sans/uni-sans-heavy.otf') format('OpenType');
+  font-style: normal;
+}
+
+.UniSansHeavy{
+  font-family: 'uni-sans-heavy';
+}
+
+@font-face {
+  font-family: 'uni-sans-thin-italic';
+  src: url($fonts + 'uni-sans/uni-sans-thin-italic.otf'),
+  url($fonts + 'uni-sans/uni-sans-thin-italic.otf') format('OpenType');
+  font-style: normal;
+}
+
+.UniSansItalic{
+  font-family: 'uni-sans-thin-italic';
+}
+
+@font-face {
+  font-family: 'lato-light';
+  src: url($fonts + 'lato/lato-light.ttf'),
+  url($fonts + 'lato/lato-light.ttf') format('truetype');
+  font-style: normal;
+}
+
+.LatoLight{
+  font-family: 'lato-light';
+}
+
+@font-face {
+  font-family: 'lato-hairline';
+  src: url($fonts + 'lato/lato-hairline.ttf'),
+  url($fonts + 'lato/lato-hairline.ttf') format('truetype');
+  font-style: normal;
+}
+
+.LatoHairline{
+  font-family: 'lato-hairline';
+}
+
+@font-face {
+  font-family: 'rajdhani-regular';
+  src: url($fonts + 'rajdhani/rajdhani-regular.ttf'),
+  url($fonts + 'rajdhani/rajdhani-regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+.Rajdhani{
+  font-family: 'rajdhani-regular';
+}
+
+@font-face {
+  font-family: 'rajdhani-bold';
+  src: url($fonts + 'rajdhani/rajdhani-bold.ttf'),
+  url($fonts + 'rajdhani/rajdhani-bold.ttf') format('truetype');
+  font-style: normal;
+}
+
+.RajdhaniBold{
+  font-family: 'rajdhani-bold';
+}
+
+@font-face {
+  font-family: 'rajdhani-light';
+  src: url($fonts + 'rajdhani/rajdhani-light.ttf'),
+  url($fonts + 'rajdhani/rajdhani-light.ttf') format('truetype');
+  font-style: normal;
+}
+
+.RajdhaniLight{
+  font-family: 'rajdhani-light';
+}
+
+@font-face {
+  font-family: 'thewoodlands';
+  src: url($fonts + 'thewoodlands/thewoodlands-regular.otf'),
+  url($fonts + 'thewoodlands/thewoodlands-regular.otf') format('opentype');
+  font-style: normal;
+}
+
+.thewoodlands{
+  font-family: 'thewoodlands';
+}

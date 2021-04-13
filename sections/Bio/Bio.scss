@@ -1,0 +1,32 @@
+#section-bio {
+  width: 100%;
+  padding: 100px 0 0 0;
+  min-height: none;
+
+  @include respond-to('max', $small-width) {
+    padding: 0;
+  }
+
+  .bio {
+    &-container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    &-heading {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    &-copy {
+      line-height: 1.8;
+    }
+  }
+
+  .profile-img {
+    max-width: 100%;
+  }
+
+  .feature-container {
+    display: inline-block;
+  }
+}

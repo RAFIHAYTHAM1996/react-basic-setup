@@ -1,0 +1,10 @@
+@import "normalize.scss";
+@import "vars.scss";
+@import "../public/assets/css/bootstrap/bootstrap.scss";
+@import 'fonts.scss';
+@import "globals.scss";
+@import '../layouts/style/*.scss';
+@import '../pages/style/*.scss';
+@import '../components/**/*.scss';
+@import '../sections/**/*.scss';
+@import '../plugins/**/*.*css';

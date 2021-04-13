@@ -1,0 +1,36 @@
+/*
+ * ====================================================================
+ * vars.scss
+ * 	Used to set variables used throughout scss files
+ * ====================================================================
+ */
+$ASSET_PATH: '/assets/' !default;
+$images: '#{$ASSET_PATH}images/';
+
+$scrollbar-size: 4px;
+$responsiveBreakpoint: 992px;
+// $primary: #141720;
+$primary: #5f30ff;
+$primaryLight: #FFF;
+$secondary: #e2d0a1;
+
+$xlarge-width: '1199px';
+$large-width: '991px';
+$medium-width: '767px';
+$small-width: '575px';
+
+@mixin respond-to($condition, $media) {
+  @media only screen and (#{$condition}-width: #{$media}) {
+      @content;
+  }
+}
+
+@mixin linear-gradient($from, $to, $stop) {
+  background: $to;
+	background: -moz-linear-gradient(top, $from 0%, $from $stop, $to 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop($stop,$from), color-stop(100%,$to));
+	background: -webkit-linear-gradient(top, $from 0%, $from $stop,$to 100%);
+	background: -o-linear-gradient(top, $from 0%, $from $stop,$to 100%);
+	background: linear-gradient(to bottom, $from 0%, $from $stop,$to 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$from}, endColorstr=#{$to})
+}

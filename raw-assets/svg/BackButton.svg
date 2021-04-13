@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
-	<circle cx="50" cy="50" r="48.5" class="BackgroundCircle"/>
-	<path d="M53.2,63.4l5.4,0c4.5,0,8.3-1.6,8.4-9c0-0.3,0,0.2,0,0c0-0.1,0-0.1,0-0.2c-0.2-7.7-3.8-8.7-8.4-8.7h-6H44" class="Line"/>
-	<circle cx="53.3" cy="63.5" r="2.7" class="TailCircle"/>
-	<polygon points="25.8,46 44.1,35.4 44.1,56.5" class="Arrow" />
-</svg>

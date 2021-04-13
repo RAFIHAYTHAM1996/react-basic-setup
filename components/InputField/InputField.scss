@@ -1,0 +1,37 @@
+.InputField {
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+
+  label {
+    width: 100%;
+  }
+
+  .Label {
+    position: absolute;
+    transform: translateY(30px);
+    cursor: pointer;
+    width: 80%;
+    color: $primary;
+    @extend .Rajdhani;
+  }
+
+  .Error {
+    color: red;
+  }
+
+  .TextField {
+    width: 100%;
+    border: none;
+    background: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $primary;
+    color: $primary;
+    @extend .RajdhaniBold;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

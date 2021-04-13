@@ -1,0 +1,146 @@
+.MenuContainer {
+  $width: 300px;
+  $width-mobile: 250px;
+
+  position: fixed;
+  width: $width;
+  height: 100%;
+  top: 0;
+  right: -$width;
+  background-color: $primaryLight;
+  padding: 0 50px;
+  z-index: 1000;
+
+  @media only screen and (max-width: 350px) {
+    width: $width-mobile;
+    left: -$width-mobile;
+  }
+
+  &.dark {
+    background-color: darken($primary, 0.8);
+  }
+
+  div.MenuButton {
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 17px;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: $primary;
+    transition: all 0.25s ease-in-out;
+    transform: translateX(-70px); // required for initial js animation
+    cursor: pointer;
+
+    @media only screen and (max-width: 350px) {
+      left: $width-mobile - 20px;
+    }
+
+    &.dark {
+      background-color: $primaryLight;
+    }
+
+    #hamburger-menu {
+      height: 25px;
+      width: 25px;
+      @extend .absolute-center;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(.15,.54,.15,.98);
+  
+      line {
+        stroke-width: 6;
+        stroke: $primaryLight;
+  
+        &:nth-child(1) {
+          stroke-dasharray: 68;
+          stroke-dashoffset: 0;
+        }
+  
+        &:nth-child(2) {
+          stroke-dasharray: 68;
+          stroke-dashoffset: 35;
+        }
+  
+        &:nth-child(3) {
+          stroke-dasharray: 68;
+          stroke-dashoffset: 20;
+        }
+      }
+  
+      &:hover {
+        &.expanded {
+          animation: hamburger-icon-anim .3s ease-in-out;
+          @keyframes hamburger-icon-anim {
+            0% { transform: rotateZ(0deg) }
+            50% { transform: rotateZ(10deg) }
+            75% { transform: rotateZ(-10deg) }
+            100% { transform: rotateZ(0deg) }
+          }
+        }
+      }
+    }
+  }
+
+  ul.MenuLinkList {
+    list-style: none;
+    padding-left: 0;
+    width: 200px;
+    height: 180px;
+    position: absolute;
+    margin: auto;
+    left: 0; right: 0;
+    top: calc(50vh - 90px);
+
+    li {
+      color: $primary;
+      margin-bottom: 20px;
+      font-size: 20px;
+      @extend .UniSansHeavy;
+      cursor: pointer;
+      opacity: 0;
+
+      &.dark {
+        color: $secondary;
+        a svg.MenuLinkLine line {
+          stroke: $secondary;
+        }
+      }
+
+      &:hover {
+        a svg.MenuLinkLine {
+          margin-right: 5px;
+          width: 30px;
+        }
+      }
+
+      a {
+        position: relative;
+        transition: all 0.25s cubic-bezier(.53,.29,.13,.94);
+
+        svg.MenuLinkLine {
+          display: inline-block;
+          position: relative;
+          height: 3px;
+          width: 0;
+          margin: 0;
+          vertical-align: middle;
+          margin-right: 25px;
+          line {
+            stroke: $primary;
+          }
+          transition: all 0.25s cubic-bezier(.53,.29,.13,.94);
+        }
+      }
+
+      span.LinkNumber {
+        display: inline-block;
+        margin-right: 5px;
+        transform: rotateZ(-90.1deg);
+        font-size: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+}

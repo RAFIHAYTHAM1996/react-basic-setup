@@ -1,0 +1,25 @@
+#Project {
+  width: 100%;
+  position: relative;
+  background-color: $primaryLight;
+
+  .ContentContainer {
+    padding-bottom: 50px;
+  }
+
+  .proj-name {
+    color: $primary;
+  }
+
+  .proj-img-container {
+    height: 100vh;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    @include respond-to('max', $medium-width) {
+      height: 50vh;
+    }
+  }
+}

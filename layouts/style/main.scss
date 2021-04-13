@@ -1,0 +1,9 @@
+#custom-cursor {
+  display: block;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border: 1px solid $secondary;
+  z-index: 10000;
+  pointer-events: none !important;
+}

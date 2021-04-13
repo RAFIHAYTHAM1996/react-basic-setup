@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "url": "espresslabs",
+      "images": [
+        "espresslabs.jpg"
+      ],
+      "info": [
+        { "title": "name",
+          "content": "Espress Labs Inc"
+        },
+        { "title": "project type",
+          "content": "Website Development"
+        },
+        { "title": "agency",
+          "content": "Espress Labs"
+        },
+        { "title": "Technology",
+          "content": "React and NodeJS"
+        }
+      ]
+    }, {
+      "url": "futurebarbershop",
+      "images": [
+        "futurebarbershop.jpg"
+      ],
+      "info": [
+        { "title": "name",
+          "content": "Future Barbershop"
+        },
+        { "title": "project type",
+          "content": "Business Website"
+        },
+        { "title": "client",
+          "content": "Future Barbershop"
+        },
+        { "title": "Technology",
+          "content": "HTML, CSS, JAVASCRIPT"
+        }
+      ]
+    }
+  ],
+  "features": [
+    {
+      "icon": "user-alt",
+      "text": "An ambitious, detail-oriented and goal-driven Software Developer based in Toronto, Canada. I believe time management and organizational skills are key in tackling down tasks."
+    },{
+      "icon": "smile-beam",
+      "text": "Over the past few years, I have had the honor to work with fantastic organizations. Independantly, and within teams, I've been able to build products used by thousands - if not millions - of people."
+    },{
+      "icon": "object-group",
+      "text": "Almost everything is constantly changing and, therefore, I believe in the significance of always expanding my knowledge and skillset in order to adapt with the rapid change."
+    }
+  ]
+}

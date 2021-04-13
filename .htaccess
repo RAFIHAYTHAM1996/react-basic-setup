@@ -1,0 +1,15 @@
+# AuthType Basic
+# AuthName "Password Protected Area"
+# AuthUserFile /home/michmckay28/public_html/.htpasswd
+# Require valid-user
+
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteCond %{SERVER_PORT} 80
+# RewriteCond %{HTTP_HOST} ^(www\.)?artezan\.ca
+# RewriteRule ^(.*)$ https://www.artezan.ca/$1 [R,L]
+# RewriteBase /
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^ /index.html [L]
+# </IfModule>
